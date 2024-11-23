@@ -1,0 +1,187 @@
+{% load static %}
+
+<div class="page-sidebar">
+    <ul class="dz-social">
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/">Linkedin</a></li>
+    </ul>
+    <a href="javascript:void(0);" class="btn-bottom btn btn-primary light" data-bs-toggle="modal" data-bs-target="#modalDonate">Donate Now</a>
+</div>
+
+<!-- Header -->
+<header class="site-header mo-left header-transparent header style-2">
+    <!-- Main Header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix ">
+            <div class="container-fluid clearfix">
+                <!-- Website Logo -->
+                <div class="logo-header mostion logo-dark">
+                    <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-3.png' %}" alt=""></a>
+                </div>
+                <div class="logo-header mostion logo-light">
+                    <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-white-3.png' %}" alt=""></a>
+                </div>
+                
+                <!-- Nav Toggle Button -->
+                <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Extra Nav -->
+                <div class="extra-nav">
+                    <div class="extra-cell d-flex align-items-center">		
+                        <ul class="nav-link-list">
+                            <li><a href="javascript:void(0);" class="btn-login text-primary" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
+                            <li><a href="javascript:void(0);" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Sign Up</a></li>
+                        </ul>
+                        <a class="btn btn-primary btnhover1" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#modalDonate">
+                            <span>Donate Now</span>
+                            <i class="flaticon-heart ms-3"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="menu-btn">
+                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="22" y="11" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect x="11" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect x="22" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect x="11" y="11" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect x="11" y="22" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect y="11" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect x="22" y="22" width="4" height="4" rx="2" fill="#003B4A"/>
+                                <rect y="22" width="4" height="4" rx="2" fill="#003B4A"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Header Nav -->
+                <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+                    <div class="logo-header logo-dark">
+                        <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-3.png' %}" alt=""></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar navbar-left">	
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:index' %}">Home 1</a></li>
+                                <li><a href="{% url 'akcel:index-2' %}">Home 2</a></li>
+                                <li><a href="{% url 'akcel:index-3' %}">Home 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
+                                <li><a href="javascript:void(0);">Volunteer <i class="fa fa-angle-right"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'akcel:volunteer' %}">Volunteer</a></li>
+                                        <li><a href="{% url 'akcel:become-a-volunteer' %}">Become A Volunteer</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'akcel:faq' %}">Faq</a></li>
+                                <li><a href="{% url 'akcel:certificates' %}">Certificates</a></li>
+                                <li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
+                                <li><a href="{% url 'akcel:happy-clients' %}">Happy Clients</a></li>
+                                <li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
+                                <li><a href="{% url 'akcel:mission' %}">Mission</a></li>
+                                <li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
+                                <li><a href="{% url 'akcel:coming-soon' %}">Coming Soon</a></li>
+                                <li><a href="{% url 'akcel:under-maintenance' %}">Under Maintenance</a></li>
+                                <li><a href="{% url 'akcel:error-404' %}">Error 404</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Fundraiser</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:browse-fundraiser' %}">Browse Fundraiser</a></li>
+                                <li><a href="{% url 'akcel:become-a-fundraiser' %}">Become A Fundraiser</a></li>
+                                <li><a href="{% url 'akcel:fundraiser-detail' %}">Fundraiser Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Projects</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:project' %}">Project</a></li>
+                                <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>
+                                <li><a href="{% url 'akcel:project-sidebar' %}">Project Sidebar</a></li>
+                                <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:blog' %}">Blog</a></li>
+                                <li><a href="{% url 'akcel:blog-grid' %}">Blog Grid</a></li>
+                                <li><a href="{% url 'akcel:blog-list' %}">Blog List</a></li>
+                                <li><a href="{% url 'akcel:blog-details' %}">Blog Details</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
+                    </ul>
+                    <div class="header-bottom">
+                        <a href="javascript:void(0);" class="btn btn-light btn-login btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                            <i class="flaticon-logout me-3"></i>Login / Sign Up
+                        </a>
+                        <div class="dz-social-icon">
+                            <ul>
+                                <li><a class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
+                                <li><a class="fab fa-twitter" href="https://twitter.com/"></a></li>
+                                <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
+                                <li><a class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
+                            </ul>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Header End -->
+</header>
+<!-- Header End -->
+
+<!-- Contact Sidebar -->
+<div class="contact-sidebar">
+    <div class="contact-box">
+        <div class="logo-contact logo-dark">
+            <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-3.png' %}" alt=""></a>
+        </div>
+        <div class="m-b50 contact-text">
+            <div class="dz-title">
+                <h4>About us</h4>
+                <div class="dz-separator style-1 text-primary mb-0"></div>	
+            </div>
+            <p>Aliquam erat massa porttitor vel egestas sit tristique ultricies lorem aliquet venenatis libero a nulla placerat egestas.</p>
+            <a href="{% url 'akcel:about-us' %}" class="btn btn-primary btn-sm">READ MORE</a>
+        </div>
+        <div class="dz-title">
+            <h4>Contact Info</h4>
+            <div class="dz-separator style-1 text-primary mb-0"></div>	
+        </div>
+        <div class="icon-bx-wraper left">
+            <div class="icon-md m-r20">
+                <span class="icon-cell"><i class="las la-phone-volume"></i></span> 
+            </div>
+            <div class="icon-content">
+                <h5 class="tilte">Call Now</h5>
+                <p class="m-b0">+91 123 456 7890,<br> +91 987 654 3210</p>
+            </div>
+        </div>
+        <div class="icon-bx-wraper left">
+            <div class="icon-md m-r20">
+                <span class="icon-cell"><i class="las la-envelope-open"></i></span> 
+            </div>
+            <div class="icon-content">
+                <h5 class="tilte">Location</h5>
+                <p class="m-b0">info@gmail.com, services@gmail.com</p>
+            </div>
+        </div>
+        <div class="icon-bx-wraper left">
+            <div class="icon-md m-r20">
+                <span class="icon-cell"><i class="las la-map-marker"></i></span> 
+            </div>
+            <div class="icon-content">
+                <h5 class="tilte">Email Now</h5>
+                <p class="m-b0">15/B Miranda House, New York, US</p>
+            </div>
+        </div>
+    </div>	
+</div>
+<div class="menu-close"></div>

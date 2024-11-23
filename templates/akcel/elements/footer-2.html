@@ -1,0 +1,281 @@
+{% load static %}
+
+<!-- Footer -->
+<footer class="site-footer style-2" id="footer">
+    <div class="footer-top footer-feature background-luminosity" style="background-image: url({% static 'akcel/images/main-slider/slider1/slider-bg1.jpg' %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="widget widget_about">
+                        <div class="footer-logo logo-white">
+                            <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-white-2.png' %}" alt=""></a> 
+                        </div>
+                        <p>Akcel is a Crowdfunding & Charity Website by DexignZone lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                        <div class="dz-social-icon style-3">
+                            <ul>
+                                <li><a target="_blank" class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
+                                <li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
+                                <li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
+                                <li><a target="_blank" class="fab fa-youtube" href="https://youtube.com/"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="widget widget_services">
+                        <h4 class="widget-title">Resources</h4>
+                        <div class="separator-2 bg-secondary m-b30"></div>
+                        <ul>
+                            <li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
+                            <li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
+                            <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
+                            <li><a href="{% url 'akcel:mission' %}">Mission</a></li>
+                            <li><a href="{% url 'akcel:certificates' %}">Certificates</a></li>
+                            <li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="widget recent-posts-entry">
+                        <h4 class="widget-title">Blog Posts</h4>
+                        <div class="separator-2 bg-secondary m-b30"></div>
+                        <div class="widget-post-bx">
+                            <div class="widget-post clearfix">
+                                <div class="dz-info">
+                                    <h6 class="title"><a href="{% url 'akcel:blog-details' %}">Simple Condition for all Around.</a></h6>
+                                    <span class="post-date"> JUNE 18, 2022</span>
+                                </div>
+                            </div>
+                            <div class="post-separator"></div>
+                            <div class="widget-post clearfix">
+                                <div class="dz-info">
+                                    <h6 class="title"><a href="{% url 'akcel:blog-details' %}">Simple Condition for all Around.</a></h6>
+                                    <span class="post-date"> AUGUST 22, 2022</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="widget widget_locations">
+                        <h4 class="widget-title">Locations</h4>
+                        <div class="separator-2 bg-secondary m-b30"></div>
+                        <div class="clearfix">
+                            <h6 class="title">Washington</h6>
+                            <p>1559 Alabama Ave SE, DC 20032, Washington, USA</p>
+                            <img src="{% static 'akcel/images/footer-location.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="shape1" src="{% static 'akcel/images/side-images/shape4.png' %}" alt="">
+        <img class="shape2" src="{% static 'akcel/images/side-images/shape-line4.png' %}" alt="">
+        <img class="shape3" src="{% static 'akcel/images/side-images/shape5.png' %}" alt="">
+        <img class="shape4" src="{% static 'akcel/images/side-images/shape-line5.png' %}" alt="">
+    </div>
+    <!-- Footer Bottom Part -->
+    <div class="footer-bottom text-center">
+        <div class="container">
+            <span class="copyright-text">Akcel Crowdfunding & Charity Website - © 2024 by <a href="https://dexignzone.com/" target="_blank">DexignZone</a></span>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- read more -->
+<div class="modal fade modal-wrapper" id="read" tabindex="-1" role="dialog" aria-labelledby="read" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Choose a donation amount -->
+<div class="modal fade modal-wrapper" id="modalDonate" tabindex="-1" role="dialog" aria-labelledby="modalDonate" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Choose a donation amount</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="flaticon-close"></i></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'akcel:index' %}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="tag-donate style-1">
+                                <div class="donate-categories">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            $500
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="donate-categories">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            $1000
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="donate-categories">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            $2000
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="donate-categories">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                                        <label class="form-check-label" for="flexRadioDefault4">
+                                            $5000
+                                        </label>
+                                    </div>
+                                </div>
+                                <p>Most Donors donate approx <span>$1000</span> to this Fundraiser</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Other Amount</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control"  placeholder="Other Amount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <div class="input-group">
+                                    <input name="dzName" required="" type="text" class="form-control" placeholder="Jakob Bothman">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Email address</label>
+                                <div class="input-group">
+                                    <input name="dzEmail" required type="text" class="form-control" placeholder="info@mail.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Address</label>
+                                <div class="input-group">
+                                    <input required type="text" class="form-control" placeholder="Address">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label">Pancard</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" placeholder="Pancard">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group mb-0 text-center">
+                                <button name="submit" type="submit" value="Submit" class="btn btn-primary btn-block">Proceed To Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Authentication Modal -->
+<div class="modal fade modal-wrapper auth-modal" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!-- Login Your Account -->
+        <div class="modal-content">
+            <h2 class="title">Login Your Account</h2>
+            <form action="{% url 'akcel:index' %}">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <div class="reset-password">
+                        <a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-outline-primary btn-block">Login</button>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:void(0);" class="btn btn-sm facebook btn-block"><i class="fa-brands fa-facebook-f m-r10"></i>Log in with Facebook</a>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"><i class="fa-brands fa-google m-r10"></i>Log in with Google</a>
+                </div>
+                <div class="sign-text">
+                    <span>Don't have a Crowdfunding account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Sign up</a></span>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Reset Password -->
+        <div class="modal-content collapse reset-password" id="reset-password">
+            <h2 class="title">Reset password?</h2>
+            <form>
+                <div class="form-group password-icon-bx">
+                    <i class="fa fa-lock"></i>
+                    <p>Enter your email address associated with your account, and we'll email you a link to reset your password...</p>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-outline-primary btn-block">Send reset link</button>
+                </div>
+                <a data-bs-toggle="collapse" href="#reset-password" class="sign-text" role="button" aria-expanded="false" aria-controls="reset-password">Back</a>
+            </form>
+        </div>
+        
+        <!-- Sign Up Your Account -->
+        <div class="modal-content collapse sign-up" id="sign-up">
+            <h2 class="title">Sign Up Your Account</h2>
+            <form action="{% url 'akcel:index' %}">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-sm btn-outline-primary btn-block">Sign Up</button>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:void(0);" class="btn btn-sm facebook btn-block"><i class="fa-brands fa-facebook-f m-r10"></i>Log in with Facebook</a>
+                </div>
+                <div class="form-group">
+                    <a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"><i class="fa-brands fa-google m-r10"></i>Log in with Google</a>
+                </div>
+                <div class="sign-text">
+                    <span>Don't have a Crowdfunding account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Login</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<button class="scroltop icon-up" type="button"><i class="fas fa-arrow-up"></i></button>

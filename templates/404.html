@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	{% load static custom_tags %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="DexignZone">
+	<meta name="robots" content="">
+	<meta name="keywords" content="{{ dz_array.public.keywords }}" />
+	<meta name="description" content="{{ dz_array.public.description }}" />
+	<meta property="og:title" content="{{ dz_array.public.og_title }}" />
+	<meta property="og:description" content="{{ dz_array.public.og_description }}" />
+	<meta property="og:image" content="{{ dz_array.public.og_image }}" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- PAGE TITLE HERE -->
+	<title>{{ dz_array.public.title }}</title>
+    
+	<!-- FAVICONS ICON -->
+	<link rel="shortcut icon" type="image/png" href="{% static dz_array.public.favicon  %}" />
+
+    {% for cssurl in dz_array.pagelevel.akcel.akcel_views.css|getdata:request.path %}
+    <link rel="stylesheet" href="{% static cssurl %}" >
+	{% endfor %}
+
+	<!-- Custom Stylesheet -->
+    {% for cssurl in dz_array.global.css %}
+    <link rel="stylesheet" href="{% static cssurl %}">
+	{% endfor %}
+    <link rel="stylesheet" href="{% static 'akcel/css/skin/skin-1.css' %}">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body id="bg">
+	<div id="loading-area" class="loading-page-1">
+		<div class="loading-inner">
+			<div class="item-wrapper">
+				<img class="item1" src="{% static 'akcel/images/hand1.png' %}" alt="">
+				<img class="item2" src="{% static 'akcel/images/hand2.png' %}" alt="">
+				<img class="item3" src="{% static 'akcel/images/heart.png' %}" alt="">
+			</div>
+			<div class="load-text">
+				<span data-text="A" class="text-load">A</span>
+				<span data-text="k" class="text-load">k</span>
+				<span data-text="C" class="text-load">C</span>
+				<span data-text="E" class="text-load">E</span>
+				<span data-text="L" class="text-load">L</span>
+			</div>
+		</div>
+	</div>
+	<div class="page-wraper">
+	
+		<div class="error-page" style="background-image: url({% static 'akcel/images/background/bg2.jpg' %});">
+			<div class="error-inner text-center">
+				<div class="dz-error" data-text="404">404</div>
+				<h2 class="error-head">We are sorry. But the page you are looking for cannot be found.</h2>
+				<a href="{% url 'akcel:index' %}" class="btn btn-secondary">BACK TO HOMEPAGE</a>
+			</div>
+		</div>
+		
+	</div>
+
+<!--**********************************
+	Scripts
+***********************************-->
+<!-- Required vendors -->
+{% for jsurl in dz_array.global.js.top %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in dz_array.pagelevel.akcel.akcel_views.js|getdata:request.path %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% for jsurl in dz_array.global.js.bottom %}
+<script src="{% static jsurl %}"></script>
+{% endfor %}
+
+{% block additional_js %}
+{% endblock %}
+</body>
+</html>

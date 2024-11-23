@@ -1,0 +1,119 @@
+{% load static %}
+
+<header class="site-header mo-left header style-1">
+    <!-- Top Header -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="dz-topbar-inner d-flex justify-content-between align-items-center">
+                <div class="dz-topbar-left">
+                    <ul>
+                        <li>Welcome to Akcel, Crowdfunding & Charity Agency</li>
+                        <li>
+                            <a href="javascript:void(0);" class="badge badge-primary btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                                <i class="flaticon-logout me-2" ></i>Login / Sign Up
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dz-topbar-right">
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 987-654-3210</li>
+                        <li><i class="fas fa-envelope"></i>support@info.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix ">
+            <div class="container clearfix">
+                <!-- Website Logo -->
+                <div class="logo-header mostion logo-dark">
+                    <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo.png' %}" alt=""></a>
+                </div>
+                
+                <!-- Nav Toggle Button -->
+                <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <!-- Extra Nav -->
+                <div class="extra-nav">
+                    <div class="extra-cell">
+                        <a href="{% url 'akcel:contact-us' %}" class="btn btn-outline-secondary btnhover1">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="m-l10">My Account</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Header Nav -->
+                <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+                    <div class="logo-header logo-dark">
+                        <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo.png' %}" alt=""></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar navbar-left">	
+                        <li class="sub-menu"><a href="{% url 'akcel:index' %}">Home</a>
+
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
+                                <li><a href="javascript:void(0);">Volunteer <i class="fa fa-angle-right"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'akcel:volunteer' %}">Volunteer</a></li>
+                                        <li><a href="{% url 'akcel:become-a-volunteer' %}">Become A Volunteer</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{% url 'akcel:faq' %}">Faq</a></li>
+                                <li><a href="{% url 'akcel:certificates' %}">Certificates</a></li>
+                                <li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
+                                <li><a href="{% url 'akcel:happy-clients' %}">Happy Clients</a></li>
+                                <li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
+                                <li><a href="{% url 'akcel:mission' %}">Mission</a></li>
+                                <li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
+                                <li><a href="{% url 'akcel:coming-soon' %}">Coming Soon</a></li>
+                                <li><a href="{% url 'akcel:under-maintenance' %}">Under Maintenance</a></li>
+                                <li><a href="{% url 'akcel:error-404' %}">Error 404</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Fundraiser</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:browse-fundraiser' %}">Browse Fundraiser</a></li>
+                                <li><a href="{% url 'akcel:become-a-fundraiser' %}">Become A Fundraiser</a></li>
+                                <li><a href="{% url 'akcel:fundraiser-detail' %}">Fundraiser Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Projects</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:project' %}">Project</a></li>
+                                <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>
+                                <li><a href="{% url 'akcel:project-sidebar' %}">Project Sidebar</a></li>
+                                <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
+                    </ul>
+                    <div class="header-bottom">
+                        <a href="javascript:void(0);" class="btn btn-light btn-login btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                            <i class="flaticon-logout me-3"></i>Login / Sign Up
+                        </a>
+                        <div class="dz-social-icon">
+                            <ul>
+                                <li><a class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
+                                <li><a class="fab fa-twitter" href="https://twitter.com/"></a></li>
+                                <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
+                                <li><a class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
+                            </ul>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Header End -->
+</header>
