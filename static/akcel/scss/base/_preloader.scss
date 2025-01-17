@@ -16,13 +16,13 @@
 	&.loading-page-1{
 		background: #faf8f2;
 		.item-wrapper{
-			height: 60px;
-			width: 68px;
+			height: 200px;
+			width: 200px;
 			position: relative;
 			margin-left: auto;
 			margin-right: auto;
 			
-			.item1{
+			.item1{.py
 				position: absolute;
 				left: 0;
 				animation: leftHand 1.2s linear infinite;

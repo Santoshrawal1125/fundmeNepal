@@ -6,8 +6,17 @@
         <div class="container">
             <div class="dz-topbar-inner d-flex justify-content-between align-items-center">
                 <div class="dz-topbar-left">
+                    {% if user.is_authenticated %}
                     <ul>
-                        <li>Welcome to Akcel, Crowdfunding & Charity Agency</li>
+                        <li>Welcome to GoFundmeNepal, Crowdfunding & Charity Agency</li>
+                        <li>
+                            <a href="javascript:void(0);" class="badge">
+                            </a>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                        <li>Welcome to GoFundmeNepal, Crowdfunding & Charity Agency</li>
                         <li>
                             <a href="javascript:void(0);" class="badge badge-primary btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
                                 <i class="flaticon-logout me-2" ></i>Login / Sign Up
@@ -15,6 +24,7 @@
                         </li>
                     </ul>
                 </div>
+                {% endif %}
                 <div class="dz-topbar-right">
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 987-654-3210</li>
@@ -43,13 +53,27 @@
                 
                 <!-- Extra Nav -->
                 <div class="extra-nav">
-                    <div class="extra-cell">
-                        <a href="{% url 'akcel:contact-us' %}" class="btn btn-outline-secondary btnhover1">
-                            <i class="fa-solid fa-user"></i>
-                            <span class="m-l10">My Account</span>
-                        </a>
-                    </div>
-                </div>
+    <div class="extra-cell">
+        <a href="{% url 'akcel:contact-us' %}" class="btn btn-outline-secondary btnhover1">
+            <i class="fa-solid fa-user"></i>
+
+            {% if user.is_authenticated %}
+                <!-- Display user's first name -->
+                <span class="m-l10">{{ user.first_name }}</span>
+            </a>
+            <!-- Logout form styled separately -->
+            <form method="POST" action="{% url 'useraccount:logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
+            </form>
+            {% else %}
+                <!-- Display My Account link -->
+                <span class="m-l10">My Account</span>
+            {% endif %}
+        </a>
+    </div>
+</div>
+
                 
                 <!-- Header Nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
@@ -63,21 +87,12 @@
                         <li class="sub-menu-down"><a href="javascript:void(0);">Pages</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
-                                <li><a href="javascript:void(0);">Volunteer <i class="fa fa-angle-right"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{% url 'akcel:volunteer' %}">Volunteer</a></li>
-                                        <li><a href="{% url 'akcel:become-a-volunteer' %}">Become A Volunteer</a></li>
-                                    </ul>
+
                                 </li>
                                 <li><a href="{% url 'akcel:faq' %}">Faq</a></li>
-                                <li><a href="{% url 'akcel:certificates' %}">Certificates</a></li>
                                 <li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
                                 <li><a href="{% url 'akcel:happy-clients' %}">Happy Clients</a></li>
-                                <li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
-                                <li><a href="{% url 'akcel:mission' %}">Mission</a></li>
                                 <li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
-                                <li><a href="{% url 'akcel:coming-soon' %}">Coming Soon</a></li>
-                                <li><a href="{% url 'akcel:under-maintenance' %}">Under Maintenance</a></li>
                                 <li><a href="{% url 'akcel:error-404' %}">Error 404</a></li>
                             </ul>
                         </li>
@@ -94,6 +109,14 @@
                                 <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>
                                 <li><a href="{% url 'akcel:project-sidebar' %}">Project Sidebar</a></li>
                                 <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-down"><a href="javascript:void(0);">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'akcel:blog' %}">Blog</a></li>
+                                <li><a href="{% url 'akcel:blog-grid' %}">Blog Grid</a></li>
+                                <li><a href="{% url 'akcel:blog-list' %}">Blog List</a></li>
+                                <li><a href="{% url 'akcel:blog-details' %}">Blog Details</a></li>
                             </ul>
                         </li>
                         <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>

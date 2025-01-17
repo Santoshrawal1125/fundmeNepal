@@ -13,13 +13,13 @@
 	<meta property="og:description" content="{{ dz_array.public.og_description }}" />
 	<meta property="og:image" content="{{ dz_array.public.og_image }}" />
 	<meta name="format-detection" content="telephone=no">
-
+	
 	<!-- Mobile Specific -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	
 	<!-- PAGE TITLE HERE -->
 	<title>{{ dz_array.public.title }}</title>
-
+    
 	<!-- FAVICONS ICON -->
 	<link rel="shortcut icon" type="image/png" href="{% static dz_array.public.favicon  %}" />
 
@@ -66,8 +66,8 @@
 	{% include 'akcel/elements/header.html' %}
 	<!-- Header End -->
 
-
-
+	
+	
 	<div class="page-content bg-white">
 		{% if page_title == 'Home 1' or page_title == 'Blog Details' or page_title == 'Project Sidebar' or page_title == 'Become A Volunteer' %}
 		{% else %}
@@ -79,10 +79,9 @@
 		{% block content %}
 		{% endblock %}
 		<!-- Subscribe -->
-		{% include 'akcel/elements/subscribe.html' %}
 		<!-- Subscribe -->
 	</div>
-
+	
 	<!-- Footer -->
 	{% include 'akcel/elements/footer.html' %}
 	<!-- Footer -->

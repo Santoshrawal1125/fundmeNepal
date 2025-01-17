@@ -29,7 +29,6 @@
 								<li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
 								<li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
 								<li><a href="{% url 'akcel:mission' %}">Mission</a></li>
-								<li><a href="{% url 'akcel:certificates' %}">Certificates</a></li>
 								<li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
 							</ul>
 						</div>
@@ -91,12 +90,13 @@
 			<!-- Login Your Account -->
 			<div class="modal-content">
 				<h2 class="title">Login Your Account</h2>
-				<form action="{% url 'akcel:index' %}">
+				<form method ="POST" action="{% url 'account:login' %}">
+					{% csrf_token %}
 					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Email Address">
+						<input type="email"  name ="email" class="form-control" placeholder="Email Address">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="password"  name="password" class="form-control" placeholder="Password">
 						<div class="reset-password">
 							<a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a>
 						</div>
@@ -135,14 +135,26 @@
 			</div>
 			
 			<!-- Sign Up Your Account -->
-			<div class="modal-content collapse sign-up" id="sign-up">
+			<div class="modal-content collapse sign-up" id="sign-up" style="overflow:scroll">
 				<h2 class="title">Sign Up Your Account</h2>
-				<form action="{% url 'akcel:index' %}">
+				<form method = "POST" action="{% url 'account:register' %}">
+					{% csrf_token %}
+
 					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Email Address">
+						<input type="text" name ="firstname" class="form-control" placeholder="First Name">
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="text" name ="lastname" class="form-control" placeholder="Last Name">
+					</div>
+					<div class="form-group">
+						<input type="email" name ="email" class="form-control" placeholder="Email Address">
+					</div>
+					<div class="form-group">
+						<input type="password" name ="password" class="form-control" placeholder="Password">
+					</div>
+
+					<div class="form-group">
+						<input type="password" name ="confirmPassword" class="form-control" placeholder="Confirm Password">
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-sm btn-outline-primary btn-block">Sign Up</button>
@@ -153,7 +165,7 @@
 					<div class="form-group">
 						<a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"><i class="fa-brands fa-google m-r10"></i>Log in with Google</a>
 					</div>
-					<div class="sign-text">
+					<div class="form-group">
 						<span>Don't have a Crowdfunding account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Login</a></span>
 					</div>
 				</form>
@@ -162,3 +174,11 @@
 	</div>
 	
 	<button class="scroltop icon-up" type="button"><i class="fas fa-arrow-up"></i></button>
+
+{% if show_login_modal %}
+<script>
+    // Trigger the login modal to show after successful registration
+    var modal = new bootstrap.Modal(document.getElementById('modalLogin'));
+    modal.show();
+</script>
+{% endif %}
