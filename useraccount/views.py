@@ -103,4 +103,4 @@ class Logout(APIView):
     def post(self, request, *args, **kwargs):
         auth.logout(request)
         messages.info(request,"Logout successfully")
-        return redirect('useraccount:login')
+        return redirect('account:login')

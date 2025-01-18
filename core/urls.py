@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('akcel.urls', namespace='akcel')),
     path('account/', include('useraccount.urls', namespace='account')),
-    path('api/user/',include('useraccount.api_urls'))
+    path('api/user/', include('useraccount.api_urls'))
 ]
