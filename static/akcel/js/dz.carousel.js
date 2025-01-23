@@ -96,7 +96,7 @@ jQuery(window).on('load', function() {
 			parallax: true,
 			slidesPerView: 1,
 			spaceBetween: 30,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -114,7 +114,7 @@ jQuery(window).on('load', function() {
 			parallax: true,
 			slidesPerView: 2,
 			spaceBetween: 30,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -140,7 +140,7 @@ jQuery(window).on('load', function() {
 			parallax: true,
 			slidesPerView: 3,
 			spaceBetween: 0,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -169,7 +169,7 @@ jQuery(window).on('load', function() {
 			parallax: true,
 			slidesPerView: changeItemBoxed(),
 			spaceBetween: 30,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -199,7 +199,7 @@ jQuery(window).on('load', function() {
 			slidesPerView: changeItemBoxed(),
 			spaceBetween: 30,
 			slidesPerView: 3,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -229,7 +229,7 @@ jQuery(window).on('load', function() {
 			slidesPerView: changeItemBoxed(),
 			spaceBetween: 30,
 			slidesPerView: 5,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -265,7 +265,7 @@ jQuery(window).on('load', function() {
 			slidesPerView: changeItemBoxed(),
 			spaceBetween: 30,
 			slidesPerView: 3,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},
@@ -332,7 +332,7 @@ jQuery(window).on('load', function() {
 			autoplay: {
 			   delay: 3000,
 			},
-			loop:true,
+			loop:false,
 			navigation: {
 				nextEl: '.swiper-button-next5',
 				prevEl: '.swiper-button-prev5',
@@ -367,7 +367,7 @@ jQuery(window).on('load', function() {
 			autoplay: {
 			   delay: 3000,
 			},
-			loop:true,
+			loop:false,
 			navigation: {
 				nextEl: '.swiper-button-next5',
 				prevEl: '.swiper-button-prev5',
@@ -388,12 +388,12 @@ jQuery(window).on('load', function() {
 	
 	if(jQuery('.fundraiser-gallery-swiper').length > 0){
 		var swiper = new Swiper(".fundraiser-gallery-thumb", {
-			loop: false,
+			loop: true,
 			spaceBetween: 10,
 			slidesPerView: 4,
 		});
 		var swiper2 = new Swiper(".fundraiser-gallery-swiper", {
-			loop: false,
+			loop: true,
 			spaceBetween: 10,
 			navigation: {
 				nextEl: ".swiper-button-next",
@@ -413,7 +413,7 @@ jQuery(window).on('load', function() {
 			slidesPerView: changeItemBoxed(),
 			spaceBetween: 30,
 			slidesPerView: 4,
-			loop:true,
+			loop:false,
 			autoplay: {
 			   delay: 3000,
 			},

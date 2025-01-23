@@ -1,11 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User  # Default User model
+from django.utils.text import slugify
+from datetime import timedelta
+
 
 
 class Category(models.Model):
     """Model representing a campaign category (e.g., Health, Education)."""
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
+    icon_class = models.CharField(max_length=100, default="flaticon-default")  # Add a field for the icon CSS class
 
     def __str__(self):
         return self.name
@@ -18,11 +22,26 @@ class Campaign(models.Model):
     goal_amount = models.DecimalField(max_digits=10, decimal_places=2)
     current_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='campaigns')
-    category = models.ManyToManyField(Category, related_name='campaigns')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category')
     image = models.ImageField(upload_to='campaign_images/', null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+    # Extra fields for fundraiser details
+    address = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    bank_account_number = models.CharField(max_length=50, null=True, blank=True)
+    qr_code = models.ImageField(upload_to='QR_CODES/', null=True, blank=True)
+    citizenship_photo = models.ImageField(upload_to='citizenship_photos/', null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Campaign, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

@@ -28,7 +28,7 @@
                 <div class="dz-topbar-right">
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 987-654-3210</li>
-                        <li><i class="fas fa-envelope"></i>support@info.com</li>
+                        <li><i class="fas fa-envelope"></i>fundmenepal@info.com</li>
                     </ul>
                 </div>
             </div>
@@ -100,7 +100,9 @@
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:browse-fundraiser' %}">Browse Fundraiser</a></li>
                                 <li><a href="{% url 'akcel:become-a-fundraiser' %}">Become A Fundraiser</a></li>
-                                <li><a href="{% url 'akcel:fundraiser-detail' %}">Fundraiser Detail</a></li>
+                                {% for camp in campaigns %}
+                                <li><a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}">Fundraiser Detail</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
                         <li class="sub-menu-down"><a href="javascript:void(0);">Projects</a>

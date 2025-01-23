@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'useraccount',
     'dashboard',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    'drf_yasg',
 
 ]
 REST_FRAMEWORK = {
@@ -90,6 +93,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'custom_context_processor.dz_static',
+                # 'akcel.context_processor.global_context',
             ],
         },
     },
@@ -141,10 +145,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 if DEBUG:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

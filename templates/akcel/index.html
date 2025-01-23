@@ -15,39 +15,10 @@
 					<h1 class="title">
 						We Help Surface Innovations In Technology 
 					</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+					<p>FundMeNepal is a crowdfunding platform designed for Nepal, enabling users to raise funds for causes or projects.
+						It supports transparent transactions and connects donors with campaigns efficiently.</p>
 					<a href="{% url 'akcel:about-us' %}" class="btn btn-secondary btnhover2 m-r15">Learn More <i class="flaticon-right-arrows ms-3 scale1"></i></a>
 					<a href="javascript:void(0);" class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#modalDonate">Donate</a>
-					<div class="swiper banner-clients-swiper">
-						<h5 class="text-primary m-b30">Our Partners</h5>
-						<div class="swiper-wrapper">
-							<div class="swiper-slide">
-								<div class="clients-logo">
-									<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo1.png' %}" alt="">
-								</div>
-							</div>	
-							<div class="swiper-slide">
-								<div class="clients-logo">
-									<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo2.png' %}" alt="">
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="clients-logo">
-									<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo3.png' %}" alt="">
-								</div>
-							</div>	
-							<div class="swiper-slide">
-								<div class="clients-logo">
-									<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo4.png' %}" alt="">
-								</div>
-							</div>
-							<div class="swiper-slide">
-								<div class="clients-logo">
-									<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo5.png' %}" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-5">
@@ -74,90 +45,23 @@
 		<div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
 			<h5 class="sub-title">CATEGORIES</h5>
 			<h2 class="title">Explore Our Crowdfunding <br> Featured Categories</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+			<p>Categories in FundMeNepal help organize campaigns, making it easy for users to find causes they care about. They navigation and improve the user experience.</p>
 		</div>
 		<div class="swiper categories-swiper">
-			<div class="swiper-wrapper">
+			<div class="swiper-wrapper" style="justify-content:center;">
+				{% for cat in categories %}
 				<div class="swiper-slide">
 					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="0.2s">
 						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-raw-food"></i>
+							<i class="{{cat.icon_class}}"></i>
 						</a> </div>
 						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Health</a></h6>
+							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">{{cat.name}}</a></h6>
 						</div>
 					</div>
 				</div>
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="0.4s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-responsibility"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Care</a></h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="0.6s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-vr-glasses"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte text-capitalize"><a href="{% url 'akcel:project-categories' %}">Technology</a></h6>
-						</div>
-					</div>
-				</div>	
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="0.8s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-open-book"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Education</a></h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="1.0s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-video"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Videos</a></h6>
-						</div>
-					</div>
-				</div>	
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="1.2s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-like-1"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Fashion</a></h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="1.4s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-transformation"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Design</a></h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="1.6s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:project-categories' %}" class="icon-cell">
-							<i class="flaticon-doctor-bag"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:project-categories' %}">Medical</a></h6>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
+
 			</div>
 			<div class="swiper-pagination style-1 text-center"></div>
 		</div>
@@ -173,74 +77,39 @@
 
 
 
-<!-- Client Logo -->
-<section class="clients-wrapper wow fadeInUp" data-wow-delay="0.2s">
-	<div class="container">
-		<div class="section-head text-center">
-			<h4 class="title">Our Partnership</h4>
-		</div>
-		<div class="swiper clients-swiper">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<div class="clients-logo">
-						<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo1.png' %}" alt="">
-					</div>
-				</div>	
-				<div class="swiper-slide">
-					<div class="clients-logo">
-						<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo2.png' %}" alt="">
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="clients-logo">
-						<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo3.png' %}" alt="">
-					</div>
-				</div>	
-				<div class="swiper-slide">
-					<div class="clients-logo">
-						<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo4.png' %}" alt="">
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="clients-logo">
-						<img class="logo-main" src="{% static 'akcel/images/clients-logo/logo5.png' %}" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- Client Logo -->
+
 
 <!-- Online Courses -->
 <section class="content-inner-3 overflow-hidden section-pattren1">
 	<div class="container">
 		<div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
 			<h2>Recent Projects</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+			<p>Recent projects in FundMeNepal showcase diverse campaigns, from education to healthcare, inspiring donors to contribute. They reflect community needs and impactful outcomes.</p>
 		</div>
 		<div class="swiper recent-blog p-b5">
 			<div class="swiper-wrapper">
+				{% for camp in campaigns %}
 				<div class="swiper-slide">
+
 					<div class="dz-card style-2 overlay-skew wow fadeInUp" data-wow-delay="0.2s">
 						<div class="dz-media">
-							<a href="{% url 'akcel:fundraiser-detail' %}"><img src="{% static 'akcel/images/project/pic1.jpg' %}" alt=""></a>
+							<a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"><img src="{{camp.image.url}}" alt=""></a>
 						</div>
 						<div class="dz-info">
 							<ul class="dz-category">
-								<li><a href="javascript:void(0);">EDUCATION</a></li>
+								<li><a href="javascript:void(0);">{{camp.category}}</a></li>
 							</ul>
-							<h5 class="dz-title"><a href="{% url 'akcel:fundraiser-detail' %}">New vaccine for cattle calf loss learned</a></h5>
+							<h5 class="dz-title"><a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}">{{camp.title}}</a></h5>
 							<div class="progress-bx style-1">
 								<div class="progress">
 									<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%"></div>
 								</div>
 								<ul class="progress-tag">
 									<li class="raised">
-										<i class="las la-coins"></i> <span>Total Raised $ 3,542</span>
+										<i class="las la-coins"></i> <span>Total Raised $ {{camp.current_amount}}</span>
 									</li>
 									<li class="goal">
-										<i class="lar la-calendar"></i> <span>43 Days left</span>
+										<i class="lar la-calendar"></i> <span>Expiry-Date: {{camp.end_date}}</span>
 									</li>
 								</ul> 
 							</div>
@@ -250,7 +119,7 @@
 								</div>
 								<div class="author-content">
 									<div class="author-head">
-										<h6 class="author-name">Cheyenne Curtis</h6>
+										<h6 class="author-name">{{camp.created_by}}</h6>
 										<ul class="rating-list">
 											<li><i class="fa fa-star"></i></li>
 											<li><i class="fa fa-star"></i></li>
@@ -267,101 +136,10 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
-				<div class="swiper-slide">
-					<div class="dz-card style-2 overlay-skew wow fadeInUp" data-wow-delay="0.4s">
-						<div class="dz-media">
-							<a href="{% url 'akcel:fundraiser-detail' %}"><img src="{% static 'akcel/images/project/pic2.jpg' %}" alt=""></a>
-						</div>
-						<div class="dz-info">
-							<ul class="dz-category">
-								<li><a href="javascript:void(0);">TECHNOLOGY</a></li>
-							</ul>
-							<h5 class="dz-title"><a href="{% url 'akcel:fundraiser-detail' %}">He Created the Web. Now He’s Out to Remake </a></h5>
-							<div class="progress-bx style-1">
-								<div class="progress">
-									<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:65%"></div>
-								</div>
-								<ul class="progress-tag">
-									<li class="raised">
-										<i class="las la-coins"></i> <span>Total Raised $ 5,789</span>
-									</li>
-									<li class="goal">
-										<i class="lar la-calendar"></i> <span>42 Days left</span>
-									</li>
-								</ul> 
-							</div>
-							<div class="author-wrappper">
-								<div class="author-media">
-									<img src="{% static 'akcel/images/avatar/avatar2.jpg' %}" alt=""> 
-								</div>
-								<div class="author-content">
-									<div class="author-head">
-										<h6 class="author-name">Kaylynn Donin</h6>
-										<ul class="rating-list">
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-										</ul>
-									</div>
-									<ul class="author-meta">
-										<li class="campaign">12 Campaign</li>
-										<li class="location">New York, London</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide">
-					<div class="dz-card style-2 overlay-skew wow fadeInUp" data-wow-delay="0.6s">
-						<div class="dz-media">
-							<a href="{% url 'akcel:fundraiser-detail' %}"><img src="{% static 'akcel/images/project/pic3.jpg' %}" alt=""></a>
-						</div>
-						<div class="dz-info">
-							<ul class="dz-category">
-								<li><a href="javascript:void(0);">HEALTH</a></li>
-							</ul>
-							<h5 class="dz-title"><a href="{% url 'akcel:fundraiser-detail' %}">4 Things parents learned for they jids in 2020 </a></h5>
-							<div class="progress-bx style-1">
-								<div class="progress">
-									<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100" style="width:32%"></div>
-								</div>
-								<ul class="progress-tag">
-									<li class="raised">
-										<i class="las la-coins"></i> <span>Total Raised $ 3,542</span>
-									</li>
-									<li class="goal">
-										<i class="lar la-calendar"></i> <span>32 Days left</span>
-									</li>
-								</ul> 
-							</div>
-							<div class="author-wrappper">
-								<div class="author-media">
-									<img src="{% static 'akcel/images/avatar/avatar3.jpg' %}" alt=""> 
-								</div>
-								<div class="author-content">
-									<div class="author-head">
-										<h6 class="author-name">Adam Jordon</h6>
-										<ul class="rating-list">
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-										</ul>
-									</div>
-									<ul class="author-meta">
-										<li class="campaign">12 Campaign</li>
-										<li class="location">New York, London</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
+
 			</div>
 		</div>
 	</div>
@@ -526,5 +304,5 @@
 		</div>
 	</div>
 </div>
-	
+
 {% endblock %}

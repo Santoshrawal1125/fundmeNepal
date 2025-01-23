@@ -7,19 +7,19 @@
 {% block content %}
 <!-- Fundraiser Detail -->
 <section class="content-inner-2">
-	<div class="container">	
+	<div class="container">
 		<div class="row">
 			<div class="col-xl-8 col-lg-8 m-b30">
 				<div class="fundraiser-single">
 					<div class="swiper fundraiser-gallery-wrapper">
 						<div class="swiper fundraiser-gallery-swiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic1.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic2.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic3.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic4.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic5.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic6.jpg' %}" alt=""></div></div>
+								<div class="swiper-slide"><div class="dz-media"><img src="{{campaign.image.url}}" alt=""></div></div>
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic2.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic3.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic4.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic5.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic6.jpg' %}" alt=""></div></div>-->
 							</div>
 							<div class="btn-wrapper">
 								<div class="swiper-button-prev btn-prev"><i class="fa fa-arrow-left-long"></i></div>
@@ -28,21 +28,20 @@
 						</div>
 						<div class="swiper fundraiser-gallery-thumb">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic1.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic2.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic3.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic4.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic5.jpg' %}" alt=""></div></div>
-								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic6.jpg' %}" alt=""></div></div>
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic1.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic2.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic3.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic4.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic5.jpg' %}" alt=""></div></div>-->
+<!--								<div class="swiper-slide"><div class="dz-media"><img src="{% static 'akcel/images/blog/large/pic6.jpg' %}" alt=""></div></div>-->
 							</div>
 						</div>
 					</div>
-					<h2 class="title">Schooling Special Needs Children Education</h2>
-					<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-					<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-					
+					<h2 class="title">{{campaign.title}}</h2>
+					<p>{{campaign.description}}</p>
+
 					<h5>About the Fundraiser</h5>
-					<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+					<p>{{campaign.description}}</p>
 					
 					<ul class="fundraiser-bottom">
 						<li><a href="javascript:void(0);" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDonate"><i class="flaticon-like me-2"></i> Donate Now </a></li>
@@ -78,8 +77,8 @@
 					
 					<!--  Widget Fund -->
 					<div class="widget style-1 widget_fund">
-						<h3 class="title">₹ 45,00,000</h3>
-						<p>raised of <span>₹ 50,00,000</span> goal</p>
+						<h3 class="title">₹ {{campaign.current_amount}}</h3>
+						<p>raised of <span>₹ {{campaign.goal_amount}}</span> goal</p>
 						<div class="progress-bx style-1">
 							<div class="progress">
 								<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"></div>

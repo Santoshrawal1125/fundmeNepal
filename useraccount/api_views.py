@@ -2,9 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from .serializers import UserSerializers
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 
 
 def get_tokens_for_user(user):
@@ -62,28 +63,20 @@ class LoginAPI(APIView):
 
 
 class LogoutAPI(APIView):
+    permission_classes = [IsAuthenticated]
     """
     API to log out a user by blacklisting the refresh token.
     """
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
+        refresh_token = request.data.get('refresh')
+
         try:
-            refresh_token = request.data.get('refresh')
             if not refresh_token:
-                return Response(
-                    {"error": "Refresh token is required"},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({"msg": "Refresh token is required"}, status=status.HTTP_400_BAD_REQUEST)
 
             token = RefreshToken(refresh_token)
             token.blacklist()
-
-            return Response(
-                {"message": "Logout successful"},
-                status=status.HTTP_200_OK
-            )
+            return Response({"msg": "Logged Out successfully"}, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response(
-                {"error": "Invalid or expired token"},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"msg": "Invalid request or already blacklisted"},status=status.HTTP_400_BAD_REQUEST)

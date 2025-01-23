@@ -1,162 +1,162 @@
 from django.shortcuts import render
+from django.views import View
+from .models import Category, Campaign
+from django.http import JsonResponse
 
 
-def index(request):
-    context = {
-        "page_title": "Home 1"
-    }
-    return render(request, 'akcel/index.html', context)
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        campaigns = Campaign.objects.all()
+        categories = Category.objects.all()
+        return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
 
-def about_us(request):
-    context = {
-        "page_title": "About Us"
-    }
-    return render(request, 'akcel/about-us.html', context)
+class AboutUsView(View):
+    def get(self, request, *args, **kwargs):
+        campaigns = Campaign.objects.all()
+
+        return render(request, 'akcel/about-us.html', {'campaigns': campaigns})
 
 
-def volunteer(request):
-    context = {
-        "page_title": "Volunteer"
-    }
-    return render(request, 'akcel/volunteer.html', context)
+class VolunteerView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/volunteer.html')
 
 
-def become_a_volunteer(request):
-    context = {
-        "page_title": "Become A Volunteer"
-    }
-    return render(request, 'akcel/become-a-volunteer.html', context)
+class BecomeAVolunteerView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/become-a-volunteer.html')
 
 
-def faq(request):
-    context = {
-        "page_title": "FAQ"
-    }
-    return render(request, 'akcel/faq.html', context)
+class FaqView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/faq.html')
 
 
-def ask_a_question(request):
-    context = {
-        "page_title": "Ask A Question"
-    }
-    return render(request, 'akcel/ask-a-question.html', context)
+class AskAQuestionView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/ask-a-question.html')
 
 
-def happy_clients(request):
-    context = {
-        "page_title": "Happy Clients"
-    }
-    return render(request, 'akcel/happy-clients.html', context)
+class HappyClientsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/happy-clients.html')
 
 
-def how_it_works(request):
-    context = {
-        "page_title": "How It Works"
-    }
-    return render(request, 'akcel/how-it-works.html', context)
+class HowItWorksView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/how-it-works.html')
 
 
-def mission(request):
-    context = {
-        "page_title": "Mission"
-    }
-    return render(request, 'akcel/mission.html', context)
+class MissionView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/mission.html')
 
 
-def terms_and_condition(request):
-    context = {
-        "page_title": "Terms And Condition"
-    }
-    return render(request, 'akcel/terms-and-condition.html', context)
+class TermsAndConditionView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/terms-and-condition.html')
 
 
-def browse_fundraiser(request):
-    context = {
-        "page_title": "Browse Fundraiser"
-    }
-    return render(request, 'akcel/browse-fundraiser.html', context)
+class BrowseFundraiserView(View):
+    def get(self, request, *args, **kwargs):
+        campaigns = Campaign.objects.all()
+
+        return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
 
-def become_a_fundraiser(request):
-    context = {
-        "page_title": "Become A Fundraiser"
-    }
-    return render(request, 'akcel/become-a-fundraiser.html', context)
+class BecomeAFundraiserView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/become-a-fundraiser.html')
+
+    def post(self, request, *args, **kwargs):
+        # Extract data from the request
+        title = request.POST.get('title')
+        address = request.POST.get('address')
+        city = request.POST.get('city')
+        phone_number = request.POST.get('phone_number')
+        bank_account_number = request.POST.get('bank_account_number')
+        qr_code = request.FILES.get('qr_code')
+        image = request.FILES.get('image')
+        description = request.POST.get('description')
+        goal_amount = request.POST.get('goal_amount')
+        citizenship_photo = request.FILES.get('citizenship_photo')
+        additional_info = request.POST.get('additional_info')
+
+        # Save to database
+        campaign = Campaign.objects.create(
+            title=title,
+            address=address,
+            city=city,
+            phone_number=phone_number,
+            bank_account_number=bank_account_number,
+            qr_code=qr_code,
+            image=image,
+            description=description,
+            goal_amount=goal_amount,
+            citizenship_photo=citizenship_photo,
+            additional_info=additional_info
+        )
+        campaign.save()
+
+        # Respond with a success message
+        return JsonResponse({"message": "Form submitted successfully!"})
 
 
-def fundraiser_detail(request):
-    context = {
-        "page_title": "Fundraiser Detail"
-    }
-    return render(request, 'akcel/fundraiser-detail.html', context)
+class FundraiserDetailView(View):
+    def get(self, request, slug, *args, **kwargs):
+        # Fetch the campaign using the slug
+        campaign = Campaign.objects.get(slug=slug)
+
+        # Render the template and pass the campaign to the context
+        return render(request, 'akcel/fundraiser-detail.html', {'campaign': campaign})
 
 
-def project(request):
-    context = {
-        "page_title": "Project"
-    }
-    return render(request, 'akcel/project.html', context)
+class ProjectView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/project.html')
 
 
-def project_categories(request):
-    context = {
-        "page_title": "Project Categories"
-    }
-    return render(request, 'akcel/project-categories.html', context)
+class ProjectCategoriesView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/project-categories.html')
 
 
-def project_sidebar(request):
-    context = {
-        "page_title": "Project Sidebar"
-    }
-    return render(request, 'akcel/project-sidebar.html', context)
+class ProjectSidebarView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/project-sidebar.html')
 
 
-def project_story(request):
-    context = {
-        "page_title": "Project Story"
-    }
-    return render(request, 'akcel/project-story.html', context)
+class ProjectStoryView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/project-story.html')
 
 
-def contact_us(request):
-    context = {
-        "page_title": "Contact Us"
-    }
-    return render(request, 'akcel/contact-us.html', context)
+class ContactUsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/contact-us.html')
 
 
-def error_404(request):
-    context = {
-        "page_title": "Error 404"
-    }
-    return render(request, '404.html', context)
+class Error404View(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, '404.html')
 
 
-def blog(request):
-    context = {
-        "page_title": "Blog"
-    }
-    return render(request, 'akcel/blog.html', context)
+class BlogView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/blog.html')
 
 
-def blog_grid(request):
-    context = {
-        "page_title": "Blog Grid"
-    }
-    return render(request, 'akcel/blog-grid.html', context)
+class BlogGridView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/blog-grid.html')
 
 
-def blog_list(request):
-    context = {
-        "page_title": "Blog List"
-    }
-    return render(request, 'akcel/blog-list.html', context)
+class BlogListView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/blog-list.html')
 
 
-def blog_details(request):
-    context = {
-        "page_title": "Blog Details"
-    }
-    return render(request, 'akcel/blog-details.html', context)
+class BlogDetailsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'akcel/blog-details.html')

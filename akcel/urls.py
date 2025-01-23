@@ -1,40 +1,29 @@
-from django.urls import path, include
-from . import views
+from django.urls import path
 from .views import *
-
 app_name = 'akcel'
 
 urlpatterns = [
-
-    path('', views.index, name="index"),
-    path('index/', views.index, name="index"),
-
-    path('about-us/', views.about_us, name="about-us"),
-    path('volunteer/', views.volunteer, name="volunteer"),
-    path('become-a-volunteer/', views.become_a_volunteer, name="become-a-volunteer"),
-    path('faq/', views.faq, name="faq"),
-    path('ask-a-question/', views.ask_a_question, name="ask-a-question"),
-    path('happy-clients/', views.happy_clients, name="happy-clients"),
-    path('how-it-works/', views.how_it_works, name="how-it-works"),
-    path('mission/', views.mission, name="mission"),
-    path('terms-and-condition/', views.terms_and_condition, name="terms-and-condition"),
-
-    path('browse-fundraiser/', views.browse_fundraiser, name="browse-fundraiser"),
-    path('become-a-fundraiser/', views.become_a_fundraiser, name="become-a-fundraiser"),
-    path('fundraiser-detail/', views.fundraiser_detail, name="fundraiser-detail"),
-
-    path('project/', views.project, name="project"),
-    path('project-categories/', views.project_categories, name="project-categories"),
-    path('project-sidebar/', views.project_sidebar, name="project-sidebar"),
-    path('project-story/', views.project_story, name="project-story"),
-
-
-    path('contact-us/', views.contact_us, name="contact-us"),
-    path('error-404/', views.error_404, name="error-404"),
-
-    path('blog/', views.blog, name="blog"),
-    path('blog-grid/', views.blog_grid, name="blog-grid"),
-    path('blog-list/', views.blog_list, name="blog-list"),
-    path('blog-details/', views.blog_details, name="blog-details"),
-
+    path('', IndexView.as_view(), name="index"),
+    path('about-us/', AboutUsView.as_view(), name="about-us"),
+    path('volunteer/', VolunteerView.as_view(), name="volunteer"),
+    path('become-a-volunteer/', BecomeAVolunteerView.as_view(), name="become-a-volunteer"),
+    path('faq/', FaqView.as_view(), name="faq"),
+    path('ask-a-question/', AskAQuestionView.as_view(), name="ask-a-question"),
+    path('happy-clients/', HappyClientsView.as_view(), name="happy-clients"),
+    path('how-it-works/', HowItWorksView.as_view(), name="how-it-works"),
+    path('mission/', MissionView.as_view(), name="mission"),
+    path('terms-and-condition/', TermsAndConditionView.as_view(), name="terms-and-condition"),
+    path('browse-fundraiser/', BrowseFundraiserView.as_view(), name="browse-fundraiser"),
+    path('become-a-fundraiser/', BecomeAFundraiserView.as_view(), name="become-a-fundraiser"),
+    path('fundraiser-detail/<slug:slug>/', FundraiserDetailView.as_view(), name="fundraiser-detail"),
+    path('project/', ProjectView.as_view(), name="project"),
+    path('project-categories/', ProjectCategoriesView.as_view(), name="project-categories"),
+    path('project-sidebar/', ProjectSidebarView.as_view(), name="project-sidebar"),
+    path('project-story/', ProjectStoryView.as_view(), name="project-story"),
+    path('contact-us/', ContactUsView.as_view(), name="contact-us"),
+    path('error-404/', Error404View.as_view(), name="error-404"),
+    path('blog/', BlogView.as_view(), name="blog"),
+    path('blog-grid/', BlogGridView.as_view(), name="blog-grid"),
+    path('blog-list/', BlogListView.as_view(), name="blog-list"),
+    path('blog-details/', BlogDetailsView.as_view(), name="blog-details"),
 ]
