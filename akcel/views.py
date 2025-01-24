@@ -65,6 +65,14 @@ class BrowseFundraiserView(View):
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
 
+class BrowseFundraiserCategoryView(View):
+    def get(self, request, category, *args, **kwargs):
+        # Filter campaigns based on the category name from the Category model
+        campaigns = Campaign.objects.filter(category__name__iexact=category)
+        return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
+
+
+
 class BecomeAFundraiserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/become-a-fundraiser.html')

@@ -6,89 +6,78 @@
         <div class="container">
             <div class="dz-topbar-inner d-flex justify-content-between align-items-center">
                 <div class="dz-topbar-left">
-                    {% if user.is_authenticated %}
                     <ul>
                         <li>Welcome to GoFundmeNepal, Crowdfunding & Charity Agency</li>
+                        {% if user.is_authenticated %}
                         <li>
                             <a href="javascript:void(0);" class="badge">
+                                Welcome, {{ user.first_name }}!
                             </a>
                         </li>
-                    </ul>
-                    {% else %}
-                    <ul>
-                        <li>Welcome to GoFundmeNepal, Crowdfunding & Charity Agency</li>
+                        {% else %}
                         <li>
                             <a href="javascript:void(0);" class="badge badge-primary btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                                <i class="flaticon-logout me-2" ></i>Login / Sign Up
+                                <i class="flaticon-logout me-2"></i>Login / Sign Up
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
-                {% endif %}
                 <div class="dz-topbar-right">
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> 987-654-3210</li>
-                        <li><i class="fas fa-envelope"></i>fundmenepal@info.com</li>
+                        <li><i class="fas fa-envelope"></i> fundmenepal@info.com</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Main Header -->
     <div class="sticky-header main-bar-wraper navbar-expand-lg">
         <div class="main-bar clearfix ">
             <div class="container clearfix">
                 <!-- Website Logo -->
                 <div class="logo-header mostion logo-dark">
-                    <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo.png' %}" alt=""></a>
+                    <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo.png' %}" alt="Logo"></a>
                 </div>
-                
+
                 <!-- Nav Toggle Button -->
                 <button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                
+
                 <!-- Extra Nav -->
                 <div class="extra-nav">
-    <div class="extra-cell">
-        <a href="{% url 'akcel:contact-us' %}" class="btn btn-outline-secondary btnhover1">
-            <i class="fa-solid fa-user"></i>
+                    <div class="extra-cell">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'akcel:contact-us' %}" class="btn btn-outline-secondary btnhover1">
+                                <i class="fa-solid fa-user"></i>
+                                <span class="m-l10">{{ user.first_name }}</span>
+                            </a>
+                            <!-- Logout form -->
+                            <form method="POST" action="{% url 'account:logout' %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
+                            </form>
+                        {% else %}
+                            <a href="javascript:void(0);" class="btn btn-outline-secondary btnhover1" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                                <i class="flaticon-logout me-2"></i>Login / Sign Up
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
 
-            {% if user.is_authenticated %}
-                <!-- Display user's first name -->
-                <span class="m-l10">{{ user.first_name }}</span>
-            </a>
-            <!-- Logout form styled separately -->
-            <form method="POST" action="{% url 'account:logout' %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
-            </form>
-            {% else %}
-                <!-- Display My Account link -->
-                <span class="m-l10">My Account</span>
-            {% endif %}
-        </a>
-    </div>
-</div>
-
-                
                 <!-- Header Nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
-                    <div class="logo-header logo-dark">
-                        <a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo.png' %}" alt=""></a>
-                    </div>
-                    <ul class="nav navbar-nav navbar navbar-left">	
-                        <li class="sub-menu"><a href="{% url 'akcel:index' %}">Home</a>
-
-                        </li>
-                        <li class="sub-menu-down"><a href="javascript:void(0);">Pages</a>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class="sub-menu"><a href="{% url 'akcel:index' %}">Home</a></li>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Pages</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
-
-                                </li>
                                 <li><a href="{% url 'akcel:faq' %}">Faq</a></li>
                                 <li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
                                 <li><a href="{% url 'akcel:happy-clients' %}">Happy Clients</a></li>
@@ -96,7 +85,8 @@
                                 <li><a href="{% url 'akcel:error-404' %}">Error 404</a></li>
                             </ul>
                         </li>
-                        <li class="sub-menu-down"><a href="javascript:void(0);">Fundraiser</a>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Fundraiser</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:browse-fundraiser' %}">Browse Fundraiser</a></li>
                                 <li><a href="{% url 'akcel:become-a-fundraiser' %}">Become A Fundraiser</a></li>
@@ -105,7 +95,8 @@
                                 {% endfor %}
                             </ul>
                         </li>
-                        <li class="sub-menu-down"><a href="javascript:void(0);">Projects</a>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Projects</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:project' %}">Project</a></li>
                                 <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>
@@ -113,7 +104,8 @@
                                 <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
                             </ul>
                         </li>
-                        <li class="sub-menu-down"><a href="javascript:void(0);">Blog</a>
+                        <li class="sub-menu-down">
+                            <a href="javascript:void(0);">Blog</a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:blog' %}">Blog</a></li>
                                 <li><a href="{% url 'akcel:blog-grid' %}">Blog Grid</a></li>
@@ -123,19 +115,6 @@
                         </li>
                         <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
                     </ul>
-                    <div class="header-bottom">
-                        <a href="javascript:void(0);" class="btn btn-light btn-login btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                            <i class="flaticon-logout me-3"></i>Login / Sign Up
-                        </a>
-                        <div class="dz-social-icon">
-                            <ul>
-                                <li><a class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
-                                <li><a class="fab fa-twitter" href="https://twitter.com/"></a></li>
-                                <li><a class="fab fa-linkedin-in" href="https://www.linkedin.com/"></a></li>
-                                <li><a class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
-                            </ul>
-                        </div>	
-                    </div>
                 </div>
             </div>
         </div>

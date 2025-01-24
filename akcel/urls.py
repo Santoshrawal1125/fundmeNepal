@@ -13,6 +13,8 @@ urlpatterns = [
     path('how-it-works/', HowItWorksView.as_view(), name="how-it-works"),
     path('mission/', MissionView.as_view(), name="mission"),
     path('terms-and-condition/', TermsAndConditionView.as_view(), name="terms-and-condition"),
+    path('browse-fundraiser-<str:category>/', BrowseFundraiserCategoryView.as_view(),
+         name="browse-fundraiser-category"),
     path('browse-fundraiser/', BrowseFundraiserView.as_view(), name="browse-fundraiser"),
     path('become-a-fundraiser/', BecomeAFundraiserView.as_view(), name="become-a-fundraiser"),
     path('fundraiser-detail/<slug:slug>/', FundraiserDetailView.as_view(), name="fundraiser-detail"),
