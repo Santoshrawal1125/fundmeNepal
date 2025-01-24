@@ -160,3 +160,13 @@ class BlogListView(View):
 class BlogDetailsView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/blog-details.html')
+
+class FundraiserDetailsCategory(View):
+    def get(self,request,slug, *args, **kwargs):
+        category=Category.objects.get(slug=slug)
+        campaign = Campaign.objects.filter(category=category)
+        context={
+            'category':category,
+            'campaigns': campaign,
+        }
+        return render(request,'akcel/fundraiser-details-category.html',context)

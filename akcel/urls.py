@@ -26,4 +26,6 @@ urlpatterns = [
     path('blog-grid/', BlogGridView.as_view(), name="blog-grid"),
     path('blog-list/', BlogListView.as_view(), name="blog-list"),
     path('blog-details/', BlogDetailsView.as_view(), name="blog-details"),
+    path('fundraiser-details-category/<slug:slug>/', FundraiserDetailsCategory.as_view(), name="fundraiser-details-category"),
+
 ]

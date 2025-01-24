@@ -10,9 +10,15 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True, null=True)
     icon_class = models.CharField(max_length=100, default="flaticon-default")  # Add a field for the icon CSS class
+    slug = models.SlugField(unique=True, blank=True, null=True)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+        
 
 
 class Campaign(models.Model):
