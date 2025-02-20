@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from datetime import timedelta
 
 
-
 class Category(models.Model):
     """Model representing a campaign category (e.g., Health, Education)."""
     name = models.CharField(max_length=100, unique=True)
@@ -22,7 +21,7 @@ class Campaign(models.Model):
     goal_amount = models.DecimalField(max_digits=10, decimal_places=2)
     current_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='campaigns')
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='category', null=True, blank=True)
     image = models.ImageField(upload_to='campaign_images/', null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(null=True, blank=True)

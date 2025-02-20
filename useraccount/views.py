@@ -4,50 +4,50 @@ from django.contrib import messages
 import re
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model, authenticate, login
-from .serializers import UserSerializers
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 from django.contrib import auth
 
 
-class Register(APIView):
+class Register(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/index.html')
 
     def post(self, request, *args, **kwargs):
-        firstname = request.POST.get('firstname')
-        lastname = request.POST.get('lastname')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirmPassword = request.POST.get('confirmPassword')
+        firstname = request.POST.get('firstname', '').strip()
+        lastname = request.POST.get('lastname', '').strip()
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '').strip()
+        confirmPassword = request.POST.get('confirmPassword', '').strip()
 
-        # basic validations to check if it is valid or not
+        errors = {}
 
-        if not firstname or not lastname or not email or not password or not confirmPassword:
-            messages.error(request, 'All fields are required')
-            return redirect('account:register')
+        if not firstname:
+            errors['firstname'] = "First name is required"
+        if not lastname:
+            errors['lastname'] = "Last name is required"
+        if not email:
+            errors['email'] = "Email is required"
+        elif not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            errors['email'] = "Enter a valid email address"
+        elif User.objects.filter(email=email).exists():
+            errors['email'] = "Email already exists"
 
-        if len(password) < 8:
-            messages.error(request, 'Password must be least 8 letters')
-            return redirect('account:register')
+        if not password:
+            errors['password'] = "Password is required"
+        elif len(password) < 8:
+            errors['password'] = "Password must be at least 8 characters"
 
-        if password != confirmPassword:
-            messages.error(request, 'password and confirm password do not match')
-            return redirect('account:register')
+        if not confirmPassword:
+            errors['confirmPassword'] = "Confirm password is required"
+        elif password != confirmPassword:
+            errors['confirmPassword'] = "Passwords do not match"
 
-        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-            messages.error(request, 'Enter a valid email address!')
-            return redirect('account:register')
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'email already exists')
-            return redirect('account:register')
+        if errors:
+            return render(request, 'akcel/index.html', {'errors': errors, 'show_signup_modal': True})
 
         try:
             user = User.objects.create_user(
-                username=email,  # changed django user default username to email as we login with emai not username
+                username=email,  # Use email as username
                 first_name=firstname,
                 last_name=lastname,
                 password=password,
@@ -55,47 +55,46 @@ class Register(APIView):
             )
             user.save()
             messages.success(request, 'Registered successfully')
-            # Redirect with a query parameter to trigger the login modal
             return render(request, 'akcel/index.html', {'show_login_modal': True})
 
         except Exception as e:
             messages.error(request, 'An error occurred during registration')
-            return redirect('account:register')
+            return render(request, 'akcel/index.html', {'show_signup_modal': True})
 
 
-class Login(APIView):
+
+class Login(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/index.html')
 
     def post(self, request, *args, **kwargs):
-
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        # validate email and password
+        # Validate email and password
         if not email or not password:
-            messages.error(request, "Both email and pass are required")
+            messages.error(request, "Both email and password are required")
             return redirect('account:login')
 
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            messages.error(request, 'email and password invalid')
+            messages.error(request, 'Invalid email or password')
+            return redirect('account:login')  # Ensure this returns early if the email is not found
 
         user = authenticate(username=email, password=password)
 
         if user is not None:
             login(request, user)
-            messages.success(request, 'Login success')
+            messages.success(request, 'Login successful')
             return render(request, 'akcel/index.html')
-
         else:
-            messages.error(request, 'Login Not success')
-            return render(request, 'akcel/index.html')
+            messages.error(request, 'Invalid email or password')
+            return redirect('account:login')
 
 
-class Logout(APIView):
+class Logout(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/index.html')

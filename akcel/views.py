@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.views import View
 from .models import Category, Campaign
 from django.http import JsonResponse
-
-
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         campaigns = Campaign.objects.all()
@@ -72,7 +70,6 @@ class BrowseFundraiserCategoryView(View):
         return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
 
 
-
 class BecomeAFundraiserView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/become-a-fundraiser.html')
@@ -90,6 +87,7 @@ class BecomeAFundraiserView(View):
         goal_amount = request.POST.get('goal_amount')
         citizenship_photo = request.FILES.get('citizenship_photo')
         additional_info = request.POST.get('additional_info')
+        created_by = request.user
 
         # Save to database
         campaign = Campaign.objects.create(
@@ -103,7 +101,8 @@ class BecomeAFundraiserView(View):
             description=description,
             goal_amount=goal_amount,
             citizenship_photo=citizenship_photo,
-            additional_info=additional_info
+            additional_info=additional_info,
+            created_by=created_by
         )
         campaign.save()
 

@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- Header Nav -->
-                <div class="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+                <div class="header-nav navbar-collapse collapse justify-content-center" id="navbarNavDropdown">
                     <ul class="nav navbar-nav navbar-left">
                         <li class="sub-menu"><a href="{% url 'akcel:index' %}">Home</a></li>
                         <li class="sub-menu-down">
@@ -90,29 +90,26 @@
                             <ul class="sub-menu">
                                 <li><a href="{% url 'akcel:browse-fundraiser' %}">Browse Fundraiser</a></li>
                                 <li><a href="{% url 'akcel:become-a-fundraiser' %}">Become A Fundraiser</a></li>
-                                {% for camp in campaigns %}
-                                <li><a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}">Fundraiser Detail</a></li>
-                                {% endfor %}
                             </ul>
                         </li>
-                        <li class="sub-menu-down">
-                            <a href="javascript:void(0);">Projects</a>
-                            <ul class="sub-menu">
-                                <li><a href="{% url 'akcel:project' %}">Project</a></li>
-                                <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>
-                                <li><a href="{% url 'akcel:project-sidebar' %}">Project Sidebar</a></li>
-                                <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu-down">
-                            <a href="javascript:void(0);">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="{% url 'akcel:blog' %}">Blog</a></li>
-                                <li><a href="{% url 'akcel:blog-grid' %}">Blog Grid</a></li>
-                                <li><a href="{% url 'akcel:blog-list' %}">Blog List</a></li>
-                                <li><a href="{% url 'akcel:blog-details' %}">Blog Details</a></li>
-                            </ul>
-                        </li>
+<!--                        <li class="sub-menu-down">-->
+<!--                            <a href="javascript:void(0);">Projects</a>-->
+<!--                            <ul class="sub-menu">-->
+<!--                                <li><a href="{% url 'akcel:project' %}">Project</a></li>-->
+<!--                                <li><a href="{% url 'akcel:project-categories' %}">Project Categories</a></li>-->
+<!--                                <li><a href="{% url 'akcel:project-sidebar' %}">Project Sidebar</a></li>-->
+<!--                                <li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                        <li class="sub-menu-down">-->
+<!--                            <a href="javascript:void(0);">Blog</a>-->
+<!--                            <ul class="sub-menu">-->
+<!--                                <li><a href="{% url 'akcel:blog' %}">Blog</a></li>-->
+<!--                                <li><a href="{% url 'akcel:blog-grid' %}">Blog Grid</a></li>-->
+<!--                                <li><a href="{% url 'akcel:blog-list' %}">Blog List</a></li>-->
+<!--                                <li><a href="{% url 'akcel:blog-details' %}">Blog Details</a></li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
                         <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
                     </ul>
                 </div>
