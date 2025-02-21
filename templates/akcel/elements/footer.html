@@ -364,7 +364,23 @@
 {% if show_login_modal %}
 <script>
   // Trigger the login modal to show after successful registration
-  var modal = new bootstrap.Modal(document.getElementById("modalLogin"));
+  document.addEventListener("DOMContentLoaded", function( ){
+    var modal = new bootstrap.Modal(document.getElementById("modalLogin"));
   modal.show();
+  });
+</script>
+{% endif %}
+
+<!-- made a new one for become fundraiser page so you can't click away from the popup.. -->
+{% if show_login_modal_stick %}
+<script>
+  // Trigger the login modal to show after successful registration
+  document.addEventListener("DOMContentLoaded", function( ){
+    var modal = new bootstrap.Modal(document.getElementById("modalLogin"),{
+          backdrop: 'static',  // Prevent clicking outside to close
+          keyboard: false      // Prevent pressing Escape to close
+    });
+  modal.show();
+  });
 </script>
 {% endif %}

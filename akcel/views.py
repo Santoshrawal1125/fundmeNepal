@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from .models import Category, Campaign
 from django.http import JsonResponse
-
+from useraccount.decorators import login_required
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        campaigns = Campaign.objects.all()
+        campaigns = Campaign.objects.filter(days_left__gte=0)
         categories = Category.objects.all()
         return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
@@ -60,7 +60,7 @@ class TermsAndConditionView(View):
 
 class BrowseFundraiserView(View):
     def get(self, request, *args, **kwargs):
-        campaigns = Campaign.objects.all()
+        campaigns = Campaign.objects.filter(days_left__gte=0)
 
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
@@ -74,7 +74,9 @@ class BrowseFundraiserCategoryView(View):
 
 class BecomeAFundraiserView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'akcel/become-a-fundraiser.html')
+        if not request.user.is_authenticated:
+            show_login_modal=True
+        return render(request, 'akcel/become-a-fundraiser.html',{"show_login_modal_stick":show_login_modal})
 
     def post(self, request, *args, **kwargs):
         # Extract data from the request
