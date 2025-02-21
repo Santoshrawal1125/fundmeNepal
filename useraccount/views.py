@@ -88,7 +88,8 @@ class Login(View):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login successful')
-            # return render(request, 'akcel/index.html')
+            if user.is_superuser:
+                return render(request, 'dashboard/base_index/index.html')
             return redirect("/")
         
         else:

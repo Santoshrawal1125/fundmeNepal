@@ -142,21 +142,34 @@
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     {% endif %}
                 </button>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <!-- item-->
-                    <a class="dropdown-item d-block" href="{% url 'dashboard:update_profile' %}"><i
-                        class="bx bx-user font-size-16 align-middle me-1"></i>
-                    Update Profile</a>
-                                        <a class="dropdown-item d-block" href="{% url 'dashboard:change_password' %}"><i
-                            class="bx bx-wrench font-size-16 align-middle me-1"></i>
-                        Change Password</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="{% url 'account:logout' %}">
-                        <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
-                        Logout </a>
-                    <form id="logout-form" action="" method="" style="display: none;">
-                        <input type="" name="" value="">                    </form>
-                </div>
+
+
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <!-- Update Profile -->
+                        <a class="dropdown-item d-block" href="{% url 'dashboard:update_profile' %}">
+                            <i class="bx bx-user font-size-16 align-middle me-1"></i> Update Profile
+                        </a>
+
+                        <!-- Change Password -->
+                        <a class="dropdown-item d-block" href="{% url 'dashboard:change_password' %}">
+                            <i class="bx bx-wrench font-size-16 align-middle me-1"></i> Change Password
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Logout with POST request -->
+                        <a class="dropdown-item text-danger" href="#" onclick="document.getElementById('logout-form').submit();">
+                            <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> Logout
+                        </a>
+
+                        <!-- Hidden form to log out -->
+                        <form id="logout-form" action="{% url 'account:logout' %}" method="POST" style="display: none;">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+
+
+
             </div>
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect ">
@@ -205,7 +218,7 @@
             <li>
                 <a href="{% url 'dashboard:Rent' %}" class="">
                     <i class="bx bx-home"></i>
-                    <span>Products</span>
+                    <span>Campaign</span>
                 </a>
             </li>
 
@@ -219,25 +232,7 @@
 
 
 
-                <li class="menu-title" key="t-menu">Organization Settings</li>
-                <li>
-                    <a href="{% url 'dashboard:company_detail' %}" class="">
-                        <i class="bx bx-detail"></i>
-                        <span>Company detail</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'dashboard:about' %}" class="">
-                        <i class="bx bx-info-circle"></i>
-                        <span>About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'dashboard:agent' %}" class="">
-                        <i class="bx bx-user"></i>
-                        <span>Agent</span>
-                    </a>
-                </li>
+
             </ul>
     </div>
     <!-- Sidebar -->
