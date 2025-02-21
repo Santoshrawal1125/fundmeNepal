@@ -54,7 +54,8 @@ class Register(View):
                 password=password  # `create_user` automatically hashes it
             )
             messages.success(request, 'Registered successfully')
-            return render(request, 'akcel/index.html', {'show_login_modal': True})
+            return redirect("/",{'show_login_modal':True})
+            # return render(request, 'akcel/index.html', {'show_login_modal': True})
 
         except Exception as e:
             messages.error(request, f'Error: {str(e)}')  # Debugging message
@@ -87,7 +88,9 @@ class Login(View):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login successful')
-            return render(request, 'akcel/index.html')
+            # return render(request, 'akcel/index.html')
+            return redirect("/")
+        
         else:
             messages.error(request, 'Invalid email or password')
             return redirect('account:login')
