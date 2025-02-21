@@ -45,8 +45,8 @@
 					
 					<ul class="fundraiser-bottom">
 						<li><a href="javascript:void(0);" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDonate"><i class="flaticon-like me-2"></i> Donate Now </a></li>
-						<li><a href="https://www.facebook.com/login/" target="_blank" class="btn facebook btn-primary btn-sm"><i class="fa-brands fa-facebook-square me-2"></i> Spread The World</a></li>
-						<li><a href="https://web.whatsapp.com/" target="_blank" class="btn whatsapp btn-primary btn-sm"><i class="fa-brands fa-whatsapp me-2"></i>Share</a></li>
+						<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" class="btn facebook btn-primary btn-sm"><i class="fa-brands fa-facebook-square me-2"></i> Spread The World</a></li>
+						<li><a href="https://wa.me/?text={{ campaign.get_absolute_url|urlencode }}" target="_blank" class="btn whatsapp btn-primary btn-sm"><i class="fa-brands fa-whatsapp me-2"></i>Share</a></li>
 					</ul>
 				</div>
 				
@@ -72,7 +72,7 @@
 							<a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target="#modalDonate">Net Banking</a>
 							<a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target="#modalDonate">UPI</a>
 						</div>
-						<a href="https://www.facebook.com/" target="_blank" class="btn btn-primary facebook w-100 btn-bottom"><i class="fa-brands fa-facebook-square me-2"></i> Spread The World</a>
+						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" class="btn btn-primary facebook w-100 btn-bottom"><i class="fa-brands fa-facebook-square me-2"></i> Spread The World</a>
 					</div>
 					
 					<!--  Widget Fund -->
@@ -81,21 +81,21 @@
 						<p>raised of <span>₹ {{campaign.goal_amount}}</span> goal</p>
 						<div class="progress-bx style-1">
 							<div class="progress">
-								<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%"></div>
+								<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{campaign.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{campaign.progress}}%"></div>
 							</div> 
 						</div>
 						<ul class="detail">
 							<li class="d-flex"><h5>2422</h5><span class="ms-2">supporters</span></li>
-							<li class="d-flex"><h5>52</h5><span class="ms-2">days left</span></li>
+							<li class="d-flex"><h5>{{campaign.days_left}}</h5><span class="ms-2">days left</span></li>
 						</ul>
 					</div>
 					
 					<!-- Fundraiser Post -->
-					<div class="widget style-1 recent-posts-entry">
+					<!-- <div class="widget style-1 recent-posts-entry">
 						<div class="widget-title">
 							<h5 class="title">Fundraiser Post</h5>
-						</div>	
-						<div class="widget-post-bx">
+						</div>	 -->
+						<!-- <div class="widget-post-bx">
 							<div class="widget-post clearfix">
 								<div class="dz-media"> 
 									<img src="{% static 'akcel/images/blog/recent-blog/pic1.jpg' %}" alt="">
@@ -121,12 +121,12 @@
 										</ul>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					
 					<!-- Fundraising Team -->
-					<div class="widget style-1 widget_avatar">
+					<!-- <div class="widget style-1 widget_avatar">
 						<div class="widget-title">
 							<h5 class="title">Fundraising Team</h5>
 						</div>
@@ -165,7 +165,7 @@
 							</div>
 						</div>
 					</div>
-					
+					 -->
 					<!-- Top Donors -->
 					<div class="widget style-1 widget_avatar">
 						<div class="widget-title">
