@@ -47,18 +47,17 @@ class Register(View):
 
         try:
             user = User.objects.create_user(
-                username=email,  # Use email as username
+                username=email,  # Django requires a username
                 first_name=firstname,
                 last_name=lastname,
-                password=password,
-                email=email
+                email=email,
+                password=password  # `create_user` automatically hashes it
             )
-            user.save()
             messages.success(request, 'Registered successfully')
             return render(request, 'akcel/index.html', {'show_login_modal': True})
 
         except Exception as e:
-            messages.error(request, 'An error occurred during registration')
+            messages.error(request, f'Error: {str(e)}')  # Debugging message
             return render(request, 'akcel/index.html', {'show_signup_modal': True})
 
 
@@ -83,7 +82,7 @@ class Login(View):
             messages.error(request, 'Invalid email or password')
             return redirect('account:login')  # Ensure this returns early if the email is not found
 
-        user = authenticate(username=email, password=password)
+            user = authenticate(username=email, password=password)
 
         if user is not None:
             login(request, user)

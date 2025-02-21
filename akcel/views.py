@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from .models import Category, Campaign
 from django.http import JsonResponse
+
+
 class IndexView(View):
     def get(self, request, *args, **kwargs):
         campaigns = Campaign.objects.all()

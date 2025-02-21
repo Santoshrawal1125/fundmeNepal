@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'useraccount',
     'akcel',
     'dashboard',
+
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

@@ -1,185 +1,370 @@
 {% load static %}
 
-    <!-- Footer -->
-    <footer class="site-footer style-1" id="footer">
-		<div class="footer-top">
-            <div class="container">
-				<div class="row">
-					<div class="col-xl-4 col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.2s">
-						<div class="widget widget_about">
-							<div class="footer-logo logo-white">
-								<a href="{% url 'akcel:index' %}"><img src="{% static 'akcel/images/logo-white.png' %}" alt=""></a> 
-							</div>
-							<p>FundMeNepal is a crowdfunding platform designed for Nepal, enabling users to raise funds for causes or projects.
-								It supports transparent transactions and connects donors with campaigns efficiently.</p>
-							<div class="dz-social-icon style-1">
-								<ul>
-									<li><a target="_blank" class="fab fa-facebook-f" href="https://www.facebook.com/"></a></li>
-									<li><a target="_blank" class="fab fa-instagram" href="https://www.instagram.com/"></a></li>
-									<li><a target="_blank" class="fab fa-twitter" href="https://twitter.com/"></a></li>
-									<li><a target="_blank" class="fab fa-youtube" href="https://youtube.com/"></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-3 col-6 wow fadeInUp" data-wow-delay="0.4s">
-						<div class="widget widget_services">
-							<h5 class="footer-title">Resources</h5>
-							<ul>
-								<li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
-								<li><a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a></li>
-								<li><a href="{% url 'akcel:project-story' %}">Project Story</a></li>
-								<li><a href="{% url 'akcel:mission' %}">Mission</a></li>
-								<li><a href="{% url 'akcel:terms-and-condition' %}">Terms And Condition</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-3 col-6 wow fadeInUp" data-wow-delay="0.6s">
-						<div class="widget widget_services">
-							<h5 class="footer-title">Company</h5>
-							<ul>
-								<li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
-								<li><a href="{% url 'akcel:volunteer' %}">Volunteer</a></li>
-								<li><a href="{% url 'akcel:happy-clients' %}">Happy Clients</a></li>
-								<li><a href="{% url 'akcel:project' %}">Project</a></li>
-								<li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
-								<li><a href="{% url 'akcel:faq' %}">Faq</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
-						<div class="widget widget_getintuch">
-							<h5 class="footer-title">Get in Touch with Us</h5>
-							<ul>
-								<li>
-									<i class="fas fa-map-marker-alt"></i>
-									<span>Gwarko, Lalitpur, Nepal</span>
-								</li>
-								<li>
-									<i class="fa-solid fa-phone"></i>
-									<span>092-421166</span>
-								</li>
-								<li>
-									<i class="fa fa-envelope"></i> 
-									<span>FundMeNepal@gmail.com</span>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+<!-- Footer -->
+<footer class="site-footer style-1" id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-xl-4 col-lg-12 col-md-12 wow fadeInUp"
+          data-wow-delay="0.2s"
+        >
+          <div class="widget widget_about">
+            <div class="footer-logo logo-white">
+              <a href="{% url 'akcel:index' %}"
+                ><img src="{% static 'akcel/images/logo-white.png' %}" alt=""
+              /></a>
             </div>
-			
-			<img src="{% static 'akcel/images/pattern/shape7.png' %}" class="shape-1 move-2" alt="shape">
-			<img src="{% static 'akcel/images/pattern/shape8.png' %}" class="shape-2 move-2" alt="shape">
-			<img src="{% static 'akcel/images/pattern/shape9.png' %}" class="shape-3 move-2" alt="shape">
-			
-        </div>
-        <!-- Footer Bottom Part -->
-        <div class="footer-bottom">
-            <div class="container">
-				<div class="text-center"> 
-					<span class="copyright-text">Copyright © 2025 <a href="https://www.santoshrawal.com.np/" target="_blank">Ncit</a>. All rights reserved.</span>
-				</div>
+            <p>
+              FundMeNepal is a crowdfunding platform designed for Nepal,
+              enabling users to raise funds for causes or projects. It supports
+              transparent transactions and connects donors with campaigns
+              efficiently.
+            </p>
+            <div class="dz-social-icon style-1">
+              <ul>
+                <li>
+                  <a
+                    target="_blank"
+                    class="fab fa-facebook-f"
+                    href="https://www.facebook.com/"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    class="fab fa-instagram"
+                    href="https://www.instagram.com/"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    class="fab fa-twitter"
+                    href="https://twitter.com/"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    class="fab fa-youtube"
+                    href="https://youtube.com/"
+                  ></a>
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
-    </footer>
-    <!-- Footer End -->
-	
-	<!-- Authentication Modal -->
-	<div class="modal fade modal-wrapper auth-modal" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<!-- Login Your Account -->
-			<div class="modal-content">
-				<h2 class="title">Login Your Account</h2>
-				<form method ="POST" action="{% url 'account:login' %}">
-					{% csrf_token %}
-					<div class="form-group">
-						<input type="email"  name ="email" class="form-control" placeholder="Email Address">
-					</div>
-					<div class="form-group">
-						<input type="password"  name="password" class="form-control" placeholder="Password">
-						<div class="reset-password">
-							<a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a>
-						</div>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-outline-primary btn-block">Login</button>
-					</div>
-					<div class="form-group">
-						<a href="javascript:void(0);" class="btn btn-sm facebook btn-block"><i class="fa-brands fa-facebook-f m-r10"></i>Log in with Facebook</a>
-					</div>
-					<div class="form-group">
-						<a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"><i class="fa-brands fa-google m-r10"></i>Log in with Google</a>
-					</div>
-					<div class="sign-text">
-						<span>Don't have a Crowdfunding account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Sign up</a></span>
-					</div>
-				</form>
-			</div>
-			
-			<!-- Reset Password -->
-			<div class="modal-content collapse reset-password" id="reset-password">
-				<h2 class="title">Reset password?</h2>
-				<form>
-					<div class="form-group password-icon-bx">
-						<i class="fa fa-lock"></i>
-						<p>Enter your email address associated with your account, and we'll email you a link to reset your password...</p>
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Enter email address">
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-outline-primary btn-block">Send reset link</button>
-					</div>
-					<a data-bs-toggle="collapse" href="#reset-password" class="sign-text" role="button" aria-expanded="false" aria-controls="reset-password">Back</a>
-				</form>
-			</div>
-			
-			<!-- Sign Up Your Account -->
-			<div class="modal-content collapse sign-up" id="sign-up" style="overflow:scroll">
-				<h2 class="title">Sign Up Your Account</h2>
-				<form method = "POST" action="{% url 'account:register' %}">
-					{% csrf_token %}
+        <div
+          class="col-xl-2 col-lg-4 col-md-3 col-6 wow fadeInUp"
+          data-wow-delay="0.4s"
+        >
+          <div class="widget widget_services">
+            <h5 class="footer-title">Resources</h5>
+            <ul>
+              <li><a href="{% url 'akcel:how-it-works' %}">How It Works</a></li>
+              <li>
+                <a href="{% url 'akcel:ask-a-question' %}">Ask A Question</a>
+              </li>
+              <li>
+                <a href="{% url 'akcel:project-story' %}">Project Story</a>
+              </li>
+              <li><a href="{% url 'akcel:mission' %}">Mission</a></li>
+              <li>
+                <a href="{% url 'akcel:terms-and-condition' %}"
+                  >Terms And Condition</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="col-xl-2 col-lg-4 col-md-3 col-6 wow fadeInUp"
+          data-wow-delay="0.6s"
+        >
+          <div class="widget widget_services">
+            <h5 class="footer-title">Company</h5>
+            <ul>
+              <li><a href="{% url 'akcel:about-us' %}">About Us</a></li>
+              <li><a href="{% url 'akcel:volunteer' %}">Volunteer</a></li>
+              <li>
+                <a href="{% url 'akcel:happy-clients' %}">Happy Clients</a>
+              </li>
+              <li><a href="{% url 'akcel:project' %}">Project</a></li>
+              <li><a href="{% url 'akcel:contact-us' %}">Contact Us</a></li>
+              <li><a href="{% url 'akcel:faq' %}">Faq</a></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp"
+          data-wow-delay="0.8s"
+        >
+          <div class="widget widget_getintuch">
+            <h5 class="footer-title">Get in Touch with Us</h5>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Gwarko, Lalitpur, Nepal</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-phone"></i>
+                <span>092-421166</span>
+              </li>
+              <li>
+                <i class="fa fa-envelope"></i>
+                <span>FundMeNepal@gmail.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-					<div class="form-group">
-						<input type="text" name ="firstname" class="form-control" placeholder="First Name">
-					</div>
-					<div class="form-group">
-						<input type="text" name ="lastname" class="form-control" placeholder="Last Name">
-					</div>
-					<div class="form-group">
-						<input type="email" name ="email" class="form-control" placeholder="Email Address">
-					</div>
-					<div class="form-group">
-						<input type="password" name ="password" class="form-control" placeholder="Password">
-					</div>
+    <img
+      src="{% static 'akcel/images/pattern/shape7.png' %}"
+      class="shape-1 move-2"
+      alt="shape"
+    />
+    <img
+      src="{% static 'akcel/images/pattern/shape8.png' %}"
+      class="shape-2 move-2"
+      alt="shape"
+    />
+    <img
+      src="{% static 'akcel/images/pattern/shape9.png' %}"
+      class="shape-3 move-2"
+      alt="shape"
+    />
+  </div>
+  <!-- Footer Bottom Part -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="text-center">
+        <span class="copyright-text"
+          >Copyright © 2025
+          <a href="https://www.santoshrawal.com.np/" target="_blank">Ncit</a>.
+          All rights reserved.</span
+        >
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
 
-					<div class="form-group">
-						<input type="password" name ="confirmPassword" class="form-control" placeholder="Confirm Password">
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-outline-primary btn-block">Sign Up</button>
-					</div>
-					<div class="form-group">
-						<a href="javascript:void(0);" class="btn btn-sm facebook btn-block"><i class="fa-brands fa-facebook-f m-r10"></i>Log in with Facebook</a>
-					</div>
-					<div class="form-group">
-						<a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"><i class="fa-brands fa-google m-r10"></i>Log in with Google</a>
-					</div>
-					<div class="form-group">
-						<span>Don't have a Crowdfunding account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Login</a></span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<button class="scroltop icon-up" type="button"><i class="fas fa-arrow-up"></i></button>
+<!-- Authentication Modal -->
+<div
+  class="modal fade modal-wrapper auth-modal"
+  id="modalLogin"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalLogin"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <!-- Login Your Account -->
+    <div class="modal-content">
+      <h2 class="title">Login Your Account</h2>
+      <form method="POST" action="{% url 'account:login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Email Address"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <div class="reset-password">
+            <a
+              class="btn-link collapsed"
+              data-bs-toggle="collapse"
+              href="#reset-password"
+              role="button"
+              aria-expanded="false"
+              aria-controls="reset-password"
+              >Reset password?</a
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-sm btn-outline-primary btn-block"
+          >
+            Login
+          </button>
+        </div>
+        <div class="form-group">
+          <a href="javascript:void(0);" class="btn btn-sm facebook btn-block"
+            ><i class="fa-brands fa-facebook-f m-r10"></i>Log in with
+            Facebook</a
+          >
+        </div>
+        <div class="form-group">
+          <a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"
+            ><i class="fa-brands fa-google m-r10"></i>Log in with Google</a
+          >
+        </div>
+        <div class="sign-text">
+          <span
+            >Don't have a Crowdfunding account?
+            <a
+              class="btn-link collapsed"
+              data-bs-toggle="collapse"
+              href="#sign-up"
+              role="button"
+              aria-expanded="false"
+              aria-controls="sign-up"
+              >Sign up</a
+            ></span
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- Reset Password -->
+    <div class="modal-content collapse reset-password" id="reset-password">
+      <h2 class="title">Reset password?</h2>
+      <form>
+        <div class="form-group password-icon-bx">
+          <i class="fa fa-lock"></i>
+          <p>
+            Enter your email address associated with your account, and we'll
+            email you a link to reset your password...
+          </p>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter email address"
+          />
+        </div>
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-sm btn-outline-primary btn-block"
+          >
+            Send reset link
+          </button>
+        </div>
+        <a
+          data-bs-toggle="collapse"
+          href="#reset-password"
+          class="sign-text"
+          role="button"
+          aria-expanded="false"
+          aria-controls="reset-password"
+          >Back</a
+        >
+      </form>
+    </div>
+
+    <!-- Sign Up Your Account -->
+    <div
+      class="modal-content collapse sign-up"
+      id="sign-up"
+      style="overflow: scroll"
+    >
+      <h2 class="title">Sign Up Your Account</h2>
+      <form method="POST" action="{% url 'account:register' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <input
+            type="text"
+            name="firstname"
+            class="form-control"
+            placeholder="First Name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="lastname"
+            class="form-control"
+            placeholder="Last Name"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Email Address"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            name="confirmPassword"
+            class="form-control"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <div class="form-group">
+          <button
+            type="submit"
+            class="btn btn-sm btn-outline-primary btn-block"
+          >
+            Sign Up
+          </button>
+        </div>
+        <div class="form-group">
+          <a href="javascript:void(0);" class="btn btn-sm facebook btn-block"
+            ><i class="fa-brands fa-facebook-f m-r10"></i>Log in with
+            Facebook</a
+          >
+        </div>
+        <div class="form-group">
+          <a href="javascript:void(0);" class="btn btn-sm google-plus btn-block"
+            ><i class="fa-brands fa-google m-r10"></i>Log in with Google</a
+          >
+        </div>
+        <div class="form-group">
+          <span
+            >Don't have a Crowdfunding account?
+            <a
+              class="btn-link collapsed"
+              data-bs-toggle="collapse"
+              href="#sign-up"
+              role="button"
+              aria-expanded="false"
+              aria-controls="sign-up"
+              >Login</a
+            ></span
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button class="scroltop icon-up" type="button">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
 {% if show_login_modal %}
 <script>
-    // Trigger the login modal to show after successful registration
-    var modal = new bootstrap.Modal(document.getElementById('modalLogin'));
-    modal.show();
+  // Trigger the login modal to show after successful registration
+  var modal = new bootstrap.Modal(document.getElementById("modalLogin"));
+  modal.show();
 </script>
 {% endif %}

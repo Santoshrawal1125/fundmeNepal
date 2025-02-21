@@ -1,0 +1,129 @@
+{% extends 'dashboard/base_index/base.html' %}
+{% load static %}
+{% block title %}
+{% if form.instance.pk %}
+Update category
+{% else %}
+Add category
+{% endif %}
+{% endblock %}
+{% block body %}
+<link href="{% static 'dashboard/build/css/bootstrap.min.css'%}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<link href="{% static 'dashboard/build/css/icons.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dashboard/build/css/app.min.css'%}" id="app-style" rel="stylesheet" type="text/css" />
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <a href="{% url 'dashboard:product_category' %}" class="btn btn-primary">Back to category list</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <blockquote>{% if form.instance.pk %} Update {% else %}Add New {% endif %} category</blockquote>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.media }}
+                                {{form.errors}}
+                                {% if messages %}
+                                {% for msg in messages %}
+                                <div class="alert alert-{{ msg.tags }} alert-dismissible text-bg-{{ msg.tags }} border-0 fade show" role="alert">
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    <strong>{% if msg.tags == 'success' %}Success{% elif msg.tags == 'warning' %}Warning{% endif %} - </strong>{{ msg.message }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">category Name</label>
+                                            <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control" value="{{ form.name.value|default_if_none:'' }}" placeholder="Enter category name" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="{{ form.image.id_for_label }}" class="form-label">category Image :</label>
+                                            <input type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" class="form-control" {% if not form.instance.pk %}required{% endif %} onchange="showPreview(this, 'imagePreview');">
+                                            <div id="imageContainer" style="width:auto; height:auto;">
+                                                {% if form.instance.image %}
+                                                    <img class="img-fluid" id="imagePreview" src="{{ form.instance.image.url }}" alt="">
+                                                {% else %}
+                                                    <img class="img-fluid" id="imagePreview" src="" alt="">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="{{ form.icon.id_for_label }}" class="form-label">category icon :</label>
+                                            <input type="file" name="{{ form.icon.name }}" id="{{ form.icon.id_for_label }}" class="form-control" {% if not form.instance.pk %}required{% endif %} onchange="showPreview(this, 'iconPreview');">
+                                            <div id="iconContainer" style="width:auto; height:auto;">
+                                                {% if form.instance.icon %}
+                                                    <img class="img-fluid" id="iconPreview" src="{{ form.instance.icon.url }}" alt="">
+                                                {% else %}
+                                                    <img class="img-fluid" id="iconPreview" src="" alt="">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Description</label>
+                                            {{ form.description }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    {% if form.instance.pk %}
+                                        <button type="submit" class="btn btn-success chat-send waves-effect waves-light">Update category</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-primary chat-send waves-effect waves-light">Add category</button>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        #imageContainer, #iconContainer {
+            max-width: 100%;
+            max-height: 80%;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #imagePreview, #iconPreview {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+    
+    <script>
+        function showPreview(input, previewId) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewId).src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+{% endblock %}
