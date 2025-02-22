@@ -18,7 +18,7 @@ urlpatterns = [
 
     # Rent
     path('rent/', CampaignListView.as_view(), name='Rent'),
-    path('rent/create_or_edit/', views.create_or_edit_rent, name='create_or_edit_rent'),
+    path('rent/create_or_edit/<slug>', views.create_or_edit_rent, name='create_or_edit_rent'),
     path('rent/delete', views.rentdelete, name='deleteRent'),
 
     # Contact
