@@ -3,6 +3,8 @@ from django.views import View
 from .models import Category, Campaign, ContactUs
 from django.http import JsonResponse
 from useraccount.decorators import login_required
+import requests,random
+from django.conf import settings
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
@@ -212,3 +214,57 @@ class BlogListView(View):
 class BlogDetailsView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/blog-details.html')
+
+
+def initiate_payment(request):
+    # Generate a unique purchase_order_id (this can be a random ID or related to the transaction)
+    purchase_order_id = "Order" + str(random.randint(1000, 9999))
+    
+    payload = {
+        "return_url": "http://127.0.0.1:8000/payment/",  # your return URL after payment
+        "website_url": "http://127.0.0.1:8000/",  # your website URL
+        "amount": 1300,  # amount in paisa
+        "purchase_order_id": purchase_order_id,
+        "purchase_order_name": "Test Product",
+    }
+    
+    headers = {
+        "Authorization": "Key " + settings.KHALTI_API_KEY,  # Your Khalti API key
+        "Content-Type": "application/json"
+    }
+
+    # Send POST request to initiate payment
+    response = requests.post("https://dev.khalti.com/api/v2/epayment/initiate/", json=payload, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        payment_url = data['payment_url']
+        return redirect(payment_url)
+    else:
+        return JsonResponse({"error": "Payment initiation failed"}, status=500)
+    
+
+def payment_callback(request):
+    pidx = request.GET.get('pidx')
+    txn_id = request.GET.get('txnId')
+    status = request.GET.get('status')
+
+    # Now, check the payment status by calling the lookup API
+    lookup_payload = {"pidx": pidx}
+    headers = {
+        "Authorization": "Key " + settings.KHALTI_API_KEY,  # Your Khalti API key
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post("https://dev.khalti.com/api/v2/epayment/lookup/", json=lookup_payload, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        if data['status'] == "Completed":
+            # Payment successful
+            return JsonResponse({"message": "Payment Successful"})
+        else:
+            # Payment failed or pending
+            return JsonResponse({"message": "Payment failed or pending"})
+    else:
+        return JsonResponse({"error": "Failed to verify payment status"}, status=500)

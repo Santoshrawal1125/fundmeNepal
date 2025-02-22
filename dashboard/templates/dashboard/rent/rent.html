@@ -190,7 +190,7 @@
 
                       <td style="text-align: center">
                         <a
-                          href="{% url 'dashboard:edit_Rent' item.id %}"
+                          href="s"
                           class="font-18 text-info"
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
@@ -242,7 +242,7 @@
                               {% csrf_token %}
                               <input
                                 type="hidden"
-                                name="rent_id"
+                                name="campaign_id"
                                 value="{{item.id}}"
                               />
                               <button

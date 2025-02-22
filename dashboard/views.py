@@ -84,17 +84,32 @@ def categorydelete(request):
 '''Rent Section'''
 
 
-def rent_list(request):
-    campaigns = Campaign.objects.all()
-    return render(request, 'dashboard/rent/rent.html', {'campaigns': campaigns})
+class CampaignListView(generic.ListView):
+    model = Campaign
+    template_name = 'dashboard/rent/rent.html'
+    context_object_name = 'categories'
 
 
-def create_or_edit_rent(request, rent_id=None):
+def create_or_edit_rent(request):
     return render(request, 'dashboard/rent/create_rent.html')
 
 
-def rent_delete(request):
-    return redirect('dashboard:Rent')
+def rentdelete(request):
+    if request.method == "POST":
+        id = request.POST.get('campaign_id')
+        print(f"Received campaign_id: {id}")  # Debugging statement
+
+        if not id:
+            messages.error(request, "No campaign ID provided.")
+            return redirect('dashboard:Rent')
+
+        instance = get_object_or_404(Campaign, id=id)
+        instance.delete()
+        messages.success(request, "Deleted Successfully!")
+        return redirect('dashboard:Rent')
+    else:
+        return redirect('dashboard:Rent')
+
 
 
 '''Contact Section'''

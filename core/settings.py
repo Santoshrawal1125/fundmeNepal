@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'useraccount',
     'akcel',
     'dashboard',
+    'khalti',
 
 ]
 REST_FRAMEWORK = {
@@ -158,3 +159,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+KHALTI_API_KEY = "6ca1fcea7b114061ad7b4990593402f3"
+KHALTI_VERIFY_URL = "https://dev.khalti.com/api/v2/payment/verify/"

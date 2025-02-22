@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 app_name = 'akcel'
+from . import views
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name="index"),
@@ -28,5 +30,7 @@ urlpatterns = [
     path('blog-grid/', BlogGridView.as_view(), name="blog-grid"),
     path('blog-list/', BlogListView.as_view(), name="blog-list"),
     path('blog-details/', BlogDetailsView.as_view(), name="blog-details"),
+    path('initiate-payment/', views.initiate_payment, name='initiate_payment'),
+    path('payment-callback/', views.payment_callback, name='payment_callback'),
     
 ]
