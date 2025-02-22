@@ -31,7 +31,7 @@
           <div
             class="page-title-box d-flex align-items-center justify-content-between"
           >
-            <h4 class="mb-0 font-size-18">Category List</h4>
+            <h4 class="mb-0 font-size-18">Campaign List</h4>
             <div class="page-title-right">
               <a href="s" class="btn btn-primary waves-effect waves-light">
                 <i class="bx bx-plus font-size-16 align-middle me-2"></i>Add
@@ -157,10 +157,12 @@
                       <td>{{forloop.counter}}</td>
                       <td style="text-align: center">{{item.category}}</td>
                       <td style="text-align: center">{{item.title}}</td>
-                      <td style="text-align: center">{{item.price}}</td>
+                      <td style="text-align: center">{{item.current_amount}}</td>
+                      
+
                       <td style="text-align: center">
                         <img
-                          src="{{item.product_image.url}}"
+                          src="{{item.image.url}}"
                           class="img-fluid"
                           style="
                             max-width: 200px;
@@ -171,13 +173,14 @@
                       </td>
 
                       <td style="text-align: center">
-                        {{item.short_descriptions|safe|truncatechars:30}}
+                        {{item.description|safe|truncatechars:30}}
                       </td>
 
                       <td style="text-align: center">
-                        {% for image in item.products.all %}
+                        {%if item.citizenship_photo %}
                         <img
-                          src="{{ image.image.url }}"
+                          src="{{item.citizenship_photo.url}}"
+                          alt="no image found"
                           class="img-fluid"
                           style="
                             max-width: 100px;
@@ -185,12 +188,22 @@
                             object-fit: cover;
                           "
                         />
-                        {% empty %} No additional images {% endfor %}
+                        {% else %}
+                        <img
+                          src=""
+                          class="img-fluid"
+                          style="
+                            max-width: 100px;
+                            max-height: 100px;
+                            object-fit: cover;
+                          "
+                        />
+                        {% endif %}
                       </td>
-
+ 
                       <td style="text-align: center">
                         <a
-                          href="s"
+                          href="/dashboard/rent/create_or_edit/{{item.slug}}"
                           class="font-18 text-info"
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"

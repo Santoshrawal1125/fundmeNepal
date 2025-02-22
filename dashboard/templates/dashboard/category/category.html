@@ -95,7 +95,7 @@
                       >
                         categorys Name
                       </th>
-                      <th
+                      <!-- <th
                         style="
                           text-align: center;
                           background-color: #ced4da;
@@ -112,7 +112,7 @@
                         "
                       >
                         Icon
-                      </th>
+                      </th> -->
                       <th
                         style="
                           text-align: center;
@@ -138,7 +138,7 @@
                     <tr>
                       <td>{{forloop.counter}}</td>
                       <td style="text-align: center">{{item.name}}</td>
-                      <td style="text-align: center">
+                      <!-- <td style="text-align: center">
                         <img
                           src="{{item.image.url}}"
                           class="img-fluid"
@@ -151,9 +151,9 @@
                           class="img-fluid"
                           style="height: 100px; width: 100px; object-fit: cover"
                         />
-                      </td>
+                      </td> -->
                       <td style="text-align: center">
-                        {{item.description|safe}}
+                        {{item.description|safe|truncatechars:30}}
                       </td>
 
                       <td style="text-align: center">

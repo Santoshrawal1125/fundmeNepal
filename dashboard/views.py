@@ -7,7 +7,8 @@ from akcel.models import Campaign, Category, ContactUs  # Import Campaign and Ca
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-
+from django.db.models import Sum
+from django.contrib.auth import get_user_model
 
 class AdminFundraiserDetailView(View):
     def get(self, request, slug, *args, **kwargs):
@@ -22,7 +23,28 @@ def admin_required(user):
 @login_required
 @user_passes_test(admin_required)
 def index(request):
-    return render(request, 'dashboard/base_index/index.html')
+    view = {}
+    User = get_user_model()
+    # Get the total count of users
+    view['user_count'] = User.objects.count()
+    
+
+    # Get all campaigns (can be filtered if needed)
+    view['campaigns'] = Campaign.objects.all()
+
+    # Get the total sum of 'current_amount' from Campaigns
+    view['total_collected'] = Campaign.objects.aggregate(Sum('current_amount'))['current_amount__sum'] or 0
+
+    # Get the count of active campaigns
+    view['active_campaigns'] = Campaign.objects.filter(is_active=True).count()
+
+    # Get the count of inactive campaigns
+    view['not_active'] = Campaign.objects.filter(is_active=False).count()
+    
+    view['contact_to_review'] = ContactUs.objects.count()
+
+    view['total_to_collect'] = Campaign.objects.aggregate(Sum('goal_amount'))['goal_amount__sum'] or 0
+    return render(request, 'dashboard/base_index/index.html',view)
 
 
 '''Login Section'''
@@ -90,8 +112,21 @@ class CampaignListView(generic.ListView):
     context_object_name = 'categories'
 
 
-def create_or_edit_rent(request):
-    return render(request, 'dashboard/rent/create_rent.html')
+def create_or_edit_rent(request,slug):
+    campaign = Campaign.objects.get(slug = slug )
+    if request.method == "POST":
+        title = request.POST.get("title")
+        goal_amount = request.POST.get("goal_amount")
+        is_active = request.POST.get("is_active")=="on"
+        description = request.POST.get("description")
+        campaign.title = title
+        campaign.goal_amount = goal_amount
+        campaign.description = description
+        campaign.is_active = is_active
+        campaign.save()
+        return redirect("/dashboard/rent/")
+
+    return render(request, 'dashboard/rent/create_rent.html',{"rent_form":campaign})
 
 
 def rentdelete(request):

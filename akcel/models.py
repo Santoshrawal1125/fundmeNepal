@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.contrib.auth.models import User  # Default User model
 from django.utils.text import slugify
@@ -27,7 +28,7 @@ class Campaign(models.Model):
     image = models.ImageField(upload_to='campaign_images/', null=True, blank=True)
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(null=True, blank=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     slug = models.SlugField(unique=True, blank=True, null=True)
     days_left = models.IntegerField(blank=True,null=True)
     progress = models.DecimalField(blank=True,null=True,max_digits=10,decimal_places=2)
@@ -45,8 +46,11 @@ class Campaign(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         today = timezone.now()
-        self.days_left = (self.end_date - today).days
-        self.progress = (self.current_amount/self.goal_amount)*100
+        if self.end_date:
+            self.days_left = (self.end_date - today).days
+        else:
+            self.days_left = 3
+        self.progress = (Decimal(self.current_amount)/Decimal(self.goal_amount))*100
         super(Campaign, self).save(*args, **kwargs)
 
     def __str__(self):
