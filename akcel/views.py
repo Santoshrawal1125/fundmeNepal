@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views import View
-from .models import Category, Campaign
+from .models import Category, Campaign, ContactUs
 from django.http import JsonResponse
 from useraccount.decorators import login_required
 
@@ -10,6 +10,8 @@ class IndexView(View):
         categories = Category.objects.all()
         return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
+def custom_404(request,exception):
+    return render(request,'404.html',status=404)
 
 class AboutUsView(View):
     def get(self, request, *args, **kwargs):
@@ -60,22 +62,47 @@ class TermsAndConditionView(View):
 
 class BrowseFundraiserView(View):
     def get(self, request, *args, **kwargs):
-        campaigns = Campaign.objects.filter(days_left__gte=0)
-
+        query = request.GET.get("query","").strip()
+        if query:
+            campaigns = search_items(request)
+        else:
+            campaigns = Campaign.objects.filter(days_left__gte=0)
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
-
+def search_items(request):
+    if request.method == "GET":
+        query = request.GET["query"]
+        if query != "":
+            search_campaigns = Campaign.objects.filter(title__icontains = query)
+            return search_campaigns
+        else:
+            return []
+        
 class BrowseFundraiserCategoryView(View):
     def get(self, request, category, *args, **kwargs):
         # Filter campaigns based on the category name from the Category model
-        campaigns = Campaign.objects.filter(category__name__iexact=category)
+        query = request.GET.get("query","").strip()
+        if query:
+            campaigns = search_items_category_wise(request,category)
+        else:
+            campaigns = Campaign.objects.filter(category__name__iexact=category)
         return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
 
+def search_items_category_wise(request,category):
+    if request.method == "GET":
+        query = request.GET["query"]
+        if query != "":
+            search_campaigns = Campaign.objects.filter(title__icontains = query , category__name__iexact=category)
+            return search_campaigns
+        else:
+            return []
 
 class BecomeAFundraiserView(View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             show_login_modal=True
+        else:
+            show_login_modal=False
         return render(request, 'akcel/become-a-fundraiser.html',{"show_login_modal_stick":show_login_modal})
 
     def post(self, request, *args, **kwargs):
@@ -146,6 +173,20 @@ class ProjectStoryView(View):
 class ContactUsView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/contact-us.html')
+    def post(self,request,*args,**kwargs): 
+        fullname = request.POST.get("fullname")
+        email = request.POST.get("email")
+        phone_number = request.POST.get("phonenumber")
+        message = request.POST.get("message")
+
+        ContactUs.objects.create(
+        full_name = fullname,
+        email = email,
+        contact_number = phone_number,
+        message = message
+        )
+        
+        return redirect("/contact-us/")
 
 
 class Error404View(View):

@@ -104,11 +104,13 @@
 								<div class="progress">
 									<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{camp.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{camp.progress}}%"></div>
 								</div>
-								<ul class="progress-tag">
+								<ul class="progress-tag" style="display:static">
 									<li class="raised">
-										<i class="las la-coins"></i> <span>Total Raised $ {{camp.current_amount}}</span>
+
 									</li>
 									<li class="goal">
+										<i class="las la-coins"></i> <span>Total Raised $ {{camp.current_amount}}</span><br>
+										<i class="las la-coins"></i> <span>Total amount $ {{camp.goal_amount}}</span><br>
 										<i class="lar la-calendar"></i> <span>Expiry-Date: {{camp.end_date}}</span>
 									</li>
 								</ul> 
@@ -120,17 +122,10 @@
 								<div class="author-content">
 									<div class="author-head">
 										<h6 class="author-name">{{camp.created_by.first_name}} {{camp.created_by.last_name}}</h6>
-										<ul class="rating-list">
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-											<li><i class="fa fa-star gray-light"></i></li>
-										</ul>
 									</div>
 									<ul class="author-meta">
-										<li class="campaign">12 Campaign</li>
-										<li class="location">New York, London</li>
+										<li class="campaign">{{camp.created_by.campaigns.count}}</li>
+										<li class="location">{{camp.address}}</li>
 									</ul>
 								</div>
 							</div>

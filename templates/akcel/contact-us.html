@@ -72,44 +72,39 @@
 				<div class="contact-info form-wrapper style-1">
 					<h2 class="title">Write us a message</h2>
 					<div class="contact-area">
-						<form class="dz-form dzForm contact-bx" method="POST" action="script/contact_smtp.php">
+						<form class="dz-form dzForm contact-bx" method="POST" action="/contact-us/">
+							{%csrf_token%}
 							<div class="dzFormMsg"></div>
 							<input type="hidden" class="form-control" name="dzToDo" value="Contact">
 							<div class="row sp15">
 								<div class="col-md-6">
-									<label class="form-label">First Name</label>
+									<label class="form-label">Full Name</label>
 									<div class="input-group">
-										<input name="dzFirstName" required type="text" class="form-control" placeholder="John">
+										<input name="fullname" required type="text" class="form-control" placeholder="John">
 									</div>
 								</div>
-								<div class="col-md-6">
+								<!-- <div class="col-md-6">
 									<label class="form-label">Last Name</label>
 									<div class="input-group">
 										<input name="dzLastName" required type="text" class="form-control" placeholder="Deo">
 									</div>
-								</div>
+								</div> -->
 								<div class="col-md-6">
 									<label class="form-label">Email address</label>
 									<div class="input-group">
-										<input name="dzEmail" required type="text" class="form-control" placeholder="info@example.com">
+										<input name="email" required type="text" class="form-control" placeholder="info@example.com">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">Phone Number</label>
 									<div class="input-group">
-										<input name="dzPhoneNumber" required type="text" class="form-control" placeholder="987 654 3210">
+										<input name="phonenumber" required type="text" class="form-control" placeholder="987 654 3210">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<label class="form-label">Message</label>
 									<div class="input-group">
-										<textarea name="dzMessage" rows="5" required class="form-control" placeholder="Dear Sir/Madam"></textarea>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="input-recaptcha">
-										<div class="g-recaptcha" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-										<input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
+										<textarea name="message" rows="5" required class="form-control" placeholder="Dear Sir/Madam"></textarea>
 									</div>
 								</div>
 								<div class="col-md-12">

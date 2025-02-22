@@ -77,6 +77,10 @@
 					
 					<!--  Widget Fund -->
 					<div class="widget style-1 widget_fund">
+						<div class="author-head">
+							<h5>Post BY:</h5>
+							<h3 class="author-name">{{campaign.created_by.first_name}} {{campaign.created_by.last_name}}</h3>
+						</div>
 						<h3 class="title">₹ {{campaign.current_amount}}</h3>
 						<p>raised of <span>₹ {{campaign.goal_amount}}</span> goal</p>
 						<div class="progress-bx style-1">
@@ -326,7 +330,7 @@
 </div>
 
 <!-- Refer a Friend -->
-<div class="modal fade modal-wrapper" id="modalRefer" tabindex="-1" role="dialog" aria-labelledby="modalRefer" aria-hidden="true">
+<!-- <div class="modal fade modal-wrapper" id="modalRefer" tabindex="-1" role="dialog" aria-labelledby="modalRefer" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -360,5 +364,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 {% endblock %}
