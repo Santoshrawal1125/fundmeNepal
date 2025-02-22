@@ -111,7 +111,6 @@ def rentdelete(request):
         return redirect('dashboard:Rent')
 
 
-
 '''Contact Section'''
 
 
@@ -135,7 +134,6 @@ def Contactdelete(request):
         return redirect('dashboard:contact_list')
     else:
         return redirect('dashboard:contact_list')
-
 
 
 '''Inquiry Section'''

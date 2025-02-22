@@ -1,10 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.views import View
-from .models import Category, Campaign, ContactUs
+from .models import Category, Campaign, ContactUs, Donation
 from django.http import JsonResponse
 from useraccount.decorators import login_required
-import requests,random
+import requests, random
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
@@ -12,8 +15,10 @@ class IndexView(View):
         categories = Category.objects.all()
         return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
-def custom_404(request,exception):
-    return render(request,'404.html',status=404)
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+
 
 class AboutUsView(View):
     def get(self, request, *args, **kwargs):
@@ -64,48 +69,52 @@ class TermsAndConditionView(View):
 
 class BrowseFundraiserView(View):
     def get(self, request, *args, **kwargs):
-        query = request.GET.get("query","").strip()
+        query = request.GET.get("query", "").strip()
         if query:
             campaigns = search_items(request)
         else:
             campaigns = Campaign.objects.filter(days_left__gte=0)
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
+
 def search_items(request):
     if request.method == "GET":
         query = request.GET["query"]
         if query != "":
-            search_campaigns = Campaign.objects.filter(title__icontains = query)
+            search_campaigns = Campaign.objects.filter(title__icontains=query)
             return search_campaigns
         else:
             return []
-        
+
+
 class BrowseFundraiserCategoryView(View):
     def get(self, request, category, *args, **kwargs):
         # Filter campaigns based on the category name from the Category model
-        query = request.GET.get("query","").strip()
+        query = request.GET.get("query", "").strip()
         if query:
-            campaigns = search_items_category_wise(request,category)
+            campaigns = search_items_category_wise(request, category)
         else:
             campaigns = Campaign.objects.filter(category__name__iexact=category)
         return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
 
-def search_items_category_wise(request,category):
+
+def search_items_category_wise(request, category):
     if request.method == "GET":
         query = request.GET["query"]
         if query != "":
-            search_campaigns = Campaign.objects.filter(title__icontains = query , category__name__iexact=category)
+            search_campaigns = Campaign.objects.filter(title__icontains=query, category__name__iexact=category)
             return search_campaigns
         else:
             return []
 
+
 class BecomeAFundraiserView(View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            show_login_modal=True
+            show_login_modal = True
         else:
-            show_login_modal=False
-        return render(request, 'akcel/become-a-fundraiser.html',{"show_login_modal_stick":show_login_modal})
+            show_login_modal = False
+        return render(request, 'akcel/become-a-fundraiser.html', {"show_login_modal_stick": show_login_modal})
 
     def post(self, request, *args, **kwargs):
         # Extract data from the request
@@ -175,19 +184,20 @@ class ProjectStoryView(View):
 class ContactUsView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'akcel/contact-us.html')
-    def post(self,request,*args,**kwargs): 
+
+    def post(self, request, *args, **kwargs):
         fullname = request.POST.get("fullname")
         email = request.POST.get("email")
         phone_number = request.POST.get("phonenumber")
         message = request.POST.get("message")
 
         ContactUs.objects.create(
-        full_name = fullname,
-        email = email,
-        contact_number = phone_number,
-        message = message
+            full_name=fullname,
+            email=email,
+            contact_number=phone_number,
+            message=message
         )
-        
+
         return redirect("/contact-us/")
 
 
@@ -217,54 +227,70 @@ class BlogDetailsView(View):
 
 
 def initiate_payment(request):
-    # Generate a unique purchase_order_id (this can be a random ID or related to the transaction)
-    purchase_order_id = "Order" + str(random.randint(1000, 9999))
-    
-    payload = {
-        "return_url": "http://127.0.0.1:8000/payment/",  # your return URL after payment
-        "website_url": "http://127.0.0.1:8000/",  # your website URL
-        "amount": 1300,  # amount in paisa
-        "purchase_order_id": purchase_order_id,
-        "purchase_order_name": "Test Product",
-    }
-    
-    headers = {
-        "Authorization": "Key " + settings.KHALTI_API_KEY,  # Your Khalti API key
-        "Content-Type": "application/json"
-    }
+    if request.method == "POST":
+        amount = int(request.POST.get('amount')) * 100  # Convert to paisa
+        campaign_id = request.POST.get('campaign_id')
 
-    # Send POST request to initiate payment
-    response = requests.post("https://dev.khalti.com/api/v2/epayment/initiate/", json=payload, headers=headers)
+        khalti_url = "https://khalti.com/api/v2/epayment/initiate/"
+        return_url = request.build_absolute_uri(reverse("akcel:payment_callback"))
 
-    if response.status_code == 200:
-        data = response.json()
-        payment_url = data['payment_url']
-        return redirect(payment_url)
-    else:
-        return JsonResponse({"error": "Payment initiation failed"}, status=500)
-    
+        payload = {
+            "return_url": return_url,  # Callback URL
+            "website_url": request.build_absolute_uri("/"),
+            "amount": amount,
+            "purchase_order_id": f"Order{campaign_id}",
+            "purchase_order_name": "Campaign Donation",
+        }
+
+        headers = {
+            "Authorization": f"Key {settings.KHALTI_API_KEY}",
+            "Content-Type": "application/json"
+        }
+
+        response = requests.post(khalti_url, json=payload, headers=headers)
+
+        if response.status_code == 200:
+            payment_data = response.json()
+            return redirect(payment_data["payment_url"])  # Redirect to Khalti
+        else:
+            return JsonResponse({"error": "Failed to initiate payment"}, status=400)
+
+    return redirect("index")
+
 
 def payment_callback(request):
     pidx = request.GET.get('pidx')
-    txn_id = request.GET.get('txnId')
+    txn_id = request.GET.get('transaction_id')
     status = request.GET.get('status')
+    amount = request.GET.get('amount')  # In paisa
+    campaign_id = request.GET.get('purchase_order_id').replace("Order", "")
 
-    # Now, check the payment status by calling the lookup API
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    amount_in_rs = int(amount) / 100  # Convert from paisa to rupees
+
     lookup_payload = {"pidx": pidx}
     headers = {
-        "Authorization": "Key " + settings.KHALTI_API_KEY,  # Your Khalti API key
+        "Authorization": "Key " + settings.KHALTI_API_KEY,
         "Content-Type": "application/json"
     }
 
-    response = requests.post("https://dev.khalti.com/api/v2/epayment/lookup/", json=lookup_payload, headers=headers)
+    response = requests.post("https://khalti.com/api/v2/epayment/lookup/", json=lookup_payload, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
-        if data['status'] == "Completed":
-            # Payment successful
-            return JsonResponse({"message": "Payment Successful"})
+        if data["status"] == "Completed":
+            campaign.current_amount += amount_in_rs
+            campaign.save()
+
+            Donation.objects.create(
+                user=request.user if request.user.is_authenticated else None,
+                campaign=campaign,
+                amount=amount_in_rs,
+                transaction_id=txn_id
+            )
+
+            return redirect("index")  # Redirect to homepage after successful payment
         else:
-            # Payment failed or pending
             return JsonResponse({"message": "Payment failed or pending"})
-    else:
-        return JsonResponse({"error": "Failed to verify payment status"}, status=500)
+
+    return JsonResponse({"error": "Failed to verify payment status"}, status=500)

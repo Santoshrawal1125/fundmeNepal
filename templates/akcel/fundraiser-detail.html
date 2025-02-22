@@ -66,7 +66,20 @@
 				<aside class="side-bar sticky-top">
 					<!--  Donate Now -->
 					<div class="widget style-1 widget_donate">
-						<a href="javascript:void(0);" class="btn btn-donate btn-primary w-100"  data-bs-toggle="modal" data-bs-target="#modalDonate"><i class="flaticon-like me-3"></i> Donate Now </a>
+						<form action="{% url 'akcel:initiate_payment' %}" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+							
+							<div class="mb-3">
+								<label for="amount" class="form-label">Enter Donation Amount (Rs.)</label>
+								<input type="number" name="amount" id="amount" class="form-control" min="10" required>
+							</div>
+							
+							<button type="submit" class="btn btn-donate btn-primary w-100">
+								<i class="flaticon-like me-3"></i> Donate Now
+							</button>
+						</form>
+						
 						<div class="tagcloud"> 
 							<a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target="#modalDonate">Cards</a>
 							<a href="javascript:void(0);"  data-bs-toggle="modal" data-bs-target="#modalDonate">Net Banking</a>

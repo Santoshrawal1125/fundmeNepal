@@ -58,11 +58,13 @@ class Donation(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='donations')
     donor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='donations')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    donated_at = models.DateTimeField(auto_now_add=True)
-    message = models.CharField(max_length=255, blank=True, null=True)
+    transaction_id = models.CharField(max_length=255, null=False, default='temporary_value')  # Add default value    donated_at = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(blank=True, null=True)  # Allow longer messages
 
     def __str__(self):
-        return f"{self.donor.username if self.donor else 'Anonymous'} donated {self.amount}"
+        donor_name = self.donor.username if self.donor else "Anonymous"
+        return f"{donor_name} donated Rs. {self.amount} to {self.campaign.title}"
+
 
 
 class Comment(models.Model):
