@@ -22,8 +22,8 @@ urlpatterns = [
     path('rent/delete/', views.rent_delete, name='rent_delete'),
 
     # Contact
-    path('contact/', views.contact_list, name='contact_list'),
-    path('contact/delete/', views.contact_delete, name='contact_delete'),
+    path('contact', ContactListView.as_view(), name="contact_list"),
+    path('contact/delete', views.Contactdelete, name='delete_contact'),
 
     # Inquiry
     path('inquiry/', views.inquiry_list, name='inquiry_list'),

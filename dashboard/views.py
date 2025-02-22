@@ -3,13 +3,10 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from akcel.models import Campaign, Category  # Import Campaign and Category models
+from akcel.models import Campaign, Category, ContactUs  # Import Campaign and Category models
 from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-
-
-
 
 
 class AdminFundraiserDetailView(View):
@@ -18,10 +15,9 @@ class AdminFundraiserDetailView(View):
         return render(request, 'dashboard/category.html', {'campaign': campaign})
 
 
-
-
 def admin_required(user):
     return user.is_staff
+
 
 @login_required
 @user_passes_test(admin_required)
@@ -84,6 +80,7 @@ def categorydelete(request):
     else:
         return redirect('dashboard:product_category')
 
+
 '''Rent Section'''
 
 
@@ -103,12 +100,27 @@ def rent_delete(request):
 '''Contact Section'''
 
 
-def contact_list(request):
-    return render(request, 'dashboard/contact/contact.html')
+class ContactListView(generic.ListView):
+    model = ContactUs
+    template_name = 'dashboard/contact/contact.html'
+    context_object_name = 'contacts'
+    paginate_by = 10
 
 
-def contact_delete(request):
-    return redirect('dashboard:contact_list')
+# This view is used to delete individual contact
+def Contactdelete(request):
+    if request.method == "POST":
+        id = request.POST.get(
+            'contact_id')  # This line retrieves the value of the 'contact_id' field from the POST data. This is typically a hidden input field in an HTML form that contains the ID of the contact to be deleted.
+        instance = get_object_or_404(ContactUs,
+                                     id=id)  # This line retrieves the contact object from the database using the get_object_or_404 function. It takes two arguments: the model class (Contact) and the ID of the contact. If the contact does not exist, it returns a 404 Not Found error.
+        instance.delete()  # This line deletes the retrieved contact object from the database.
+        messages.success(request,
+                         "Deleted Successfully!")  # This line adds a success message to the current user's session using Django's messaging framework, indicating that the contact was deleted successfully
+        return redirect('dashboard:contact_list')
+    else:
+        return redirect('dashboard:contact_list')
+
 
 
 '''Inquiry Section'''
@@ -178,7 +190,6 @@ class UsersListView(generic.ListView):
     model = User
     template_name = 'dashboard/user/customer.html'
     context_object_name = 'users'
-
 
 
 def Userdelete(request):
