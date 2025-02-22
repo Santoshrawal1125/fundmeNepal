@@ -11,7 +11,7 @@ from django.urls import reverse
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        campaigns = Campaign.objects.filter(days_left__gte=0)
+        campaigns = Campaign.objects.filter(days_left__gte=0,is_active=True)
         categories = Category.objects.all()
         return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
@@ -73,7 +73,7 @@ class BrowseFundraiserView(View):
         if query:
             campaigns = search_items(request)
         else:
-            campaigns = Campaign.objects.filter(days_left__gte=0)
+            campaigns = Campaign.objects.filter(days_left__gte=0,is_active=True)
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
 
@@ -82,6 +82,9 @@ def search_items(request):
         query = request.GET["query"]
         if query != "":
             search_campaigns = Campaign.objects.filter(title__icontains=query)
+
+            search_campaigns = Campaign.objects.filter(title__icontains = query,days_left__gte=0,is_active=True)
+
             return search_campaigns
         else:
             return []
@@ -94,7 +97,7 @@ class BrowseFundraiserCategoryView(View):
         if query:
             campaigns = search_items_category_wise(request, category)
         else:
-            campaigns = Campaign.objects.filter(category__name__iexact=category)
+            campaigns = Campaign.objects.filter(category__name__iexact=category,days_left__gte=0,is_active=True)
         return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
 
 
@@ -102,7 +105,10 @@ def search_items_category_wise(request, category):
     if request.method == "GET":
         query = request.GET["query"]
         if query != "":
-            search_campaigns = Campaign.objects.filter(title__icontains=query, category__name__iexact=category)
+
+
+            search_campaigns = Campaign.objects.filter(title__icontains = query , category__name__iexact=category ,is_active=True,days_left__gte=0)
+
             return search_campaigns
         else:
             return []
@@ -144,10 +150,10 @@ class BecomeAFundraiserView(View):
             goal_amount=goal_amount,
             citizenship_photo=citizenship_photo,
             additional_info=additional_info,
-            created_by=created_by
+            created_by=created_by,
         )
         campaign.save()
-
+        return redirect("/")
         # Respond with a success message
         return JsonResponse({"message": "Form submitted successfully!"})
 
