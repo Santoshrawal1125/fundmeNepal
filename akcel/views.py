@@ -7,11 +7,12 @@ import requests, random
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from decimal import Decimal
 
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        campaigns = Campaign.objects.filter(days_left__gte=0,is_active=True)
+        campaigns = Campaign.objects.filter(days_left__gte=0, is_active=True)
         categories = Category.objects.all()
         return render(request, 'akcel/index.html', {'campaigns': campaigns, 'categories': categories})
 
@@ -73,7 +74,7 @@ class BrowseFundraiserView(View):
         if query:
             campaigns = search_items(request)
         else:
-            campaigns = Campaign.objects.filter(days_left__gte=0,is_active=True)
+            campaigns = Campaign.objects.filter(days_left__gte=0, is_active=True)
         return render(request, 'akcel/browse-fundraiser.html', {'campaigns': campaigns})
 
 
@@ -83,7 +84,7 @@ def search_items(request):
         if query != "":
             search_campaigns = Campaign.objects.filter(title__icontains=query)
 
-            search_campaigns = Campaign.objects.filter(title__icontains = query,days_left__gte=0,is_active=True)
+            search_campaigns = Campaign.objects.filter(title__icontains=query, days_left__gte=0, is_active=True)
 
             return search_campaigns
         else:
@@ -97,7 +98,7 @@ class BrowseFundraiserCategoryView(View):
         if query:
             campaigns = search_items_category_wise(request, category)
         else:
-            campaigns = Campaign.objects.filter(category__name__iexact=category,days_left__gte=0,is_active=True)
+            campaigns = Campaign.objects.filter(category__name__iexact=category, days_left__gte=0, is_active=True)
         return render(request, 'akcel/browse-fundraiser-category.html', {'campaigns': campaigns})
 
 
@@ -106,8 +107,8 @@ def search_items_category_wise(request, category):
         query = request.GET["query"]
         if query != "":
 
-
-            search_campaigns = Campaign.objects.filter(title__icontains = query , category__name__iexact=category ,is_active=True,days_left__gte=0)
+            search_campaigns = Campaign.objects.filter(title__icontains=query, category__name__iexact=category,
+                                                       is_active=True, days_left__gte=0)
 
             return search_campaigns
         else:
@@ -237,8 +238,10 @@ def initiate_payment(request):
         amount = int(request.POST.get('amount')) * 100  # Convert to paisa
         campaign_id = request.POST.get('campaign_id')
 
-        khalti_url = "https://khalti.com/api/v2/epayment/initiate/"
+        khalti_url = "https://dev.khalti.com/api/v2/epayment/initiate/"
+
         return_url = request.build_absolute_uri(reverse("akcel:payment_callback"))
+        print(return_url)  # Debugging the generated return_url
 
         payload = {
             "return_url": return_url,  # Callback URL
@@ -246,6 +249,7 @@ def initiate_payment(request):
             "amount": amount,
             "purchase_order_id": f"Order{campaign_id}",
             "purchase_order_name": "Campaign Donation",
+            # Make sure any required token or credentials are here if needed
         }
 
         headers = {
@@ -255,11 +259,15 @@ def initiate_payment(request):
 
         response = requests.post(khalti_url, json=payload, headers=headers)
 
+        # Log or print the response content to understand the failure
+        print(response.status_code)
+        print(response.text)  # Print the raw response to see the error message
+
         if response.status_code == 200:
             payment_data = response.json()
             return redirect(payment_data["payment_url"])  # Redirect to Khalti
         else:
-            return JsonResponse({"error": "Failed to initiate payment"}, status=400)
+            return JsonResponse({"error": "Failed to initiate payment", "details": response.text}, status=400)
 
     return redirect("index")
 
@@ -271,32 +279,43 @@ def payment_callback(request):
     amount = request.GET.get('amount')  # In paisa
     campaign_id = request.GET.get('purchase_order_id').replace("Order", "")
 
-    campaign = get_object_or_404(Campaign, id=campaign_id)
-    amount_in_rs = int(amount) / 100  # Convert from paisa to rupees
+    # Make sure pidx exists
+    if not pidx:
+        return JsonResponse({"error": "pidx missing in callback"}, status=400)
 
+    campaign = get_object_or_404(Campaign, id=campaign_id)
+    amount_in_rs = Decimal(int(amount) / 100)  # Convert from paisa to rupees and to Decimal
+
+    # Send the verification request to the sandbox endpoint
     lookup_payload = {"pidx": pidx}
     headers = {
         "Authorization": "Key " + settings.KHALTI_API_KEY,
         "Content-Type": "application/json"
     }
 
-    response = requests.post("https://khalti.com/api/v2/epayment/lookup/", json=lookup_payload, headers=headers)
+    # Use sandbox endpoint for payment verification
+    response = requests.post("https://dev.khalti.com/api/v2/epayment/lookup/", json=lookup_payload, headers=headers)
+
+    print("Verification response status:", response.status_code)
+    print("Verification response text:", response.text)
 
     if response.status_code == 200:
         data = response.json()
         if data["status"] == "Completed":
-            campaign.current_amount += amount_in_rs
+            # Ensure both sides are Decimal for addition
+            campaign.current_amount += amount_in_rs  # Adding Decimal to Decimal
+
             campaign.save()
 
             Donation.objects.create(
-                user=request.user if request.user.is_authenticated else None,
+                donor=request.user if request.user.is_authenticated else None,
                 campaign=campaign,
                 amount=amount_in_rs,
                 transaction_id=txn_id
             )
 
-            return redirect("index")  # Redirect to homepage after successful payment
+            return redirect("/")  # Redirect to homepage after successful payment
         else:
             return JsonResponse({"message": "Payment failed or pending"})
-
-    return JsonResponse({"error": "Failed to verify payment status"}, status=500)
+    else:
+        return JsonResponse({"error": "Failed to verify payment status", "details": response.text}, status=500)

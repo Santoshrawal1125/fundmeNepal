@@ -1,303 +1,511 @@
-{% extends 'akcel/elements/layouts/layout.html' %}
-{% load static %}
-        
-{% block additional_css %}
-{% endblock %}
-		
-{% block content %}	
+{% extends 'akcel/elements/layouts/layout.html' %} {% load static %} {% block
+additional_css %}{% block content %}
 <!-- Banner Start -->
 <div class="banner-one">
-	<div class="container">
-		<div class="row banner-inner">
-			<div class="col-lg-8 col-md-7">
-				<div class="banner-content">
-					<h5 class="sub-title text-primary">Crowdfunding</h5>
-					<h1 class="title">
-						We Help Surface Innovations In Technology 
-					</h1>
-					<p>FundMeNepal is a crowdfunding platform designed for Nepal, enabling users to raise funds for causes or projects.
-						It supports transparent transactions and connects donors with campaigns efficiently.</p>
-					<a href="{% url 'akcel:browse-fundraiser' %}" class="btn btn-secondary btnhover2 m-r15">View all Campaigns<i class="flaticon-right-arrows ms-3 scale1"></i></a>
-					<a href="javascript:void(0);" class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#modalDonate">Donate</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-5">
-				<div class="banner-media">
-					<img src="{% static 'akcel/images/main-slider/pic1.png' %}" class="main-img" alt="">
-					<div class="dz-media">
-						<img src="{% static 'akcel/images/shape.png' %}" class="main-img" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="dz-shape">
-			<img src="{% static 'akcel/images/pattern/shape1.png' %}" class="shape-1 move-2" alt="shape">
-			<img src="{% static 'akcel/images/pattern/shape2.png' %}" class="shape-2 move-2" alt="shape">
-			<img src="{% static 'akcel/images/pattern/shape1.png' %}" class="shape-3 move-2" alt="shape">
-			<img src="{% static 'akcel/images/pattern/shape2.png' %}" class="shape-4 move-2" alt="shape">
-		</div>
-	</div>
+  <div class="container">
+    <div class="row banner-inner">
+      <div class="col-lg-8 col-md-7">
+        <div class="banner-content">
+          <h5 class="sub-title text-primary">Crowdfunding</h5>
+          <h1 class="title">We Help Surface Innovations In Technology</h1>
+          <p>
+            FundMeNepal is a crowdfunding platform designed for Nepal, enabling
+            users to raise funds for causes or projects. It supports transparent
+            transactions and connects donors with campaigns efficiently.
+          </p>
+          <a
+            href="{% url 'akcel:browse-fundraiser' %}"
+            class="btn btn-secondary btnhover2 m-r15"
+            >View all Campaigns<i class="flaticon-right-arrows ms-3 scale1"></i
+          ></a>
+          <a
+            href="javascript:void(0);"
+            class="btn btn-light"
+            data-bs-toggle="modal"
+            data-bs-target="#modalDonate"
+            >Donate</a
+          >
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-5">
+        <div class="banner-media">
+          <img
+            src="{% static 'akcel/images/main-slider/pic1.png' %}"
+            class="main-img"
+            alt=""
+          />
+          <div class="dz-media">
+            <img
+              src="{% static 'akcel/images/shape.png' %}"
+              class="main-img"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dz-shape">
+      <img
+        src="{% static 'akcel/images/pattern/shape1.png' %}"
+        class="shape-1 move-2"
+        alt="shape"
+      />
+      <img
+        src="{% static 'akcel/images/pattern/shape2.png' %}"
+        class="shape-2 move-2"
+        alt="shape"
+      />
+      <img
+        src="{% static 'akcel/images/pattern/shape1.png' %}"
+        class="shape-3 move-2"
+        alt="shape"
+      />
+      <img
+        src="{% static 'akcel/images/pattern/shape2.png' %}"
+        class="shape-4 move-2"
+        alt="shape"
+      />
+    </div>
+  </div>
 </div>
 <!-- Banner End -->
 
 <div class="content-inner-3 section-pattren1">
-	<div class="container">
-		<div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
-			<h5 class="sub-title">CATEGORIES</h5>
-			<h2 class="title">Explore Our Crowdfunding <br> Featured Categories</h2>
-			<p>Categories in FundMeNepal help organize campaigns, making it easy for users to find causes they care about. They navigation and improve the user experience.</p>
-		</div>
-		<div class="swiper categories-swiper">
-			<div class="swiper-wrapper" style="justify-content:center;">
-				{% for cat in categories %}
-				<div class="swiper-slide">
-					<div class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp" data-wow-delay="0.2s">
-						<div class="icon-lg m-sm-b20 m-b30"> <a href="{% url 'akcel:browse-fundraiser-category' cat.name %}" class="icon-cell">
-							<i class="{{cat.icon_class}}"></i>
-						</a> </div>
-						<div class="icon-content">
-							<h6 class="dz-tilte m-b5 text-capitalize"><a href="{% url 'akcel:browse-fundraiser-category' cat.name %}">{{cat.name}}</a></h6>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
-
-			</div>
-			<div class="swiper-pagination style-1 text-center"></div>
-		</div>
-	</div>
-	<img src="{% static 'akcel/images/pattern/shape1.png' %}" class="shape-1" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape2.png' %}" class="shape-2" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape3.png' %}" class="shape-3" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape5.png' %}" class="shape-4" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape6.png' %}" class="shape-5" alt="shape">
+  <div class="container">
+    <div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
+      <h5 class="sub-title">CATEGORIES</h5>
+      <h2 class="title">
+        Explore Our Crowdfunding <br />
+        Featured Categories
+      </h2>
+      <p>
+        Categories in FundMeNepal help organize campaigns, making it easy for
+        users to find causes they care about. They navigation and improve the
+        user experience.
+      </p>
+    </div>
+    <div class="swiper categories-swiper">
+      <div class="swiper-wrapper" style="justify-content: center">
+        {% for cat in categories %}
+        <div class="swiper-slide">
+          <div
+            class="icon-bx-wraper text-center style-1 m-b30 wow fadeInUp"
+            data-wow-delay="0.2s"
+          >
+            <div class="icon-lg m-sm-b20 m-b30">
+              <a
+                href="{% url 'akcel:browse-fundraiser-category' cat.name %}"
+                class="icon-cell"
+              >
+                <i class="{{cat.icon_class}}"></i>
+              </a>
+            </div>
+            <div class="icon-content">
+              <h6 class="dz-tilte m-b5 text-capitalize">
+                <a href="{% url 'akcel:browse-fundraiser-category' cat.name %}"
+                  >{{cat.name}}</a
+                >
+              </h6>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination style-1 text-center"></div>
+    </div>
+  </div>
+  <img
+    src="{% static 'akcel/images/pattern/shape1.png' %}"
+    class="shape-1"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape2.png' %}"
+    class="shape-2"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape3.png' %}"
+    class="shape-3"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape5.png' %}"
+    class="shape-4"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape6.png' %}"
+    class="shape-5"
+    alt="shape"
+  />
 </div>
-
-
-
-
-
-
 
 <!-- Online Courses -->
 <section class="content-inner-3 overflow-hidden section-pattren1">
-	<div class="container">
-		<div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
-			<h2>Recent Projects</h2>
-			<p>Recent projects in FundMeNepal showcase diverse campaigns, from education to healthcare, inspiring donors to contribute. They reflect community needs and impactful outcomes.</p>
-		</div>
-		<div class="swiper recent-blog p-b5">
-			<div class="swiper-wrapper">
-				{% for camp in campaigns %}
-				<div class="swiper-slide">
-
-					<div class="dz-card style-2 overlay-skew wow fadeInUp" data-wow-delay="0.2s">
-						<div class="dz-media">
-							<a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"><img src="{{camp.image.url}}" alt=""></a>
-						</div>
-						<div class="dz-info">
-							<ul class="dz-category">
-								<li><a href="javascript:void(0);">{{camp.category}}</a></li>
-							</ul>
-							<h5 class="dz-title"><a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}">{{camp.title}}</a></h5>
-							<div class="progress-bx style-1">
-								<div class="progress">
-									<div class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{camp.progress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{camp.progress}}%"></div>
-								</div>
-								<ul class="progress-tag" style="display:static">
-									<li class="raised">
-
-									</li>
-									<li class="goal">
-										<i class="las la-coins"></i> <span>Total Raised $ {{camp.current_amount}}</span><br>
-										<i class="las la-coins"></i> <span>Total amount $ {{camp.goal_amount}}</span><br>
-										<i class="lar la-calendar"></i> <span>Expiry-Date: {{camp.end_date}}</span>
-									</li>
-								</ul> 
-							</div>
-							<div class="author-wrappper">
-								<div class="author-media">
-									<img src="{% static 'akcel/images/avatar/avatar1.jpg' %}" alt=""> 
-								</div>
-								<div class="author-content">
-									<div class="author-head">
-										<h6 class="author-name">{{camp.created_by.first_name}} {{camp.created_by.last_name}}</h6>
-									</div>
-									<ul class="author-meta">
-										<li class="campaign">{{camp.created_by.campaigns.count}}</li>
-										<li class="location">{{camp.address}}</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				{% endfor %}
-
-			</div>
-		</div>
-	</div>
-	<img src="{% static 'akcel/images/pattern/shape1.png' %}" class="shape-1 move-1" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape2.png' %}" class="shape-2 move-2" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape3.png' %}" class="shape-3 move-1" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape5.png' %}" class="shape-4 rotating" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape6.png' %}" class="shape-5 rotating" alt="shape">
-	<img src="{% static 'akcel/images/pattern/shape6.png' %}" class="shape-6 rotating" alt="shape">
+  <div class="container">
+    <div class="section-head text-center wow fadeInUp" data-wow-delay="0.2s">
+      <h2>Recent Projects</h2>
+      <p>
+        Recent projects in FundMeNepal showcase diverse campaigns, from
+        education to healthcare, inspiring donors to contribute. They reflect
+        community needs and impactful outcomes.
+      </p>
+    </div>
+    <div class="swiper recent-blog p-b5">
+      <div class="swiper-wrapper">
+        {% for camp in campaigns %}
+        <div class="swiper-slide">
+          <div
+            class="dz-card style-2 overlay-skew wow fadeInUp"
+            data-wow-delay="0.2s"
+          >
+            <div class="dz-media">
+              <a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"
+                ><img src="{{camp.image.url}}" alt=""
+              /></a>
+            </div>
+            <div class="dz-info">
+              <ul class="dz-category">
+                <li><a href="javascript:void(0);">{{camp.category}}</a></li>
+              </ul>
+              <h5 class="dz-title">
+                <a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"
+                  >{{camp.title}}</a
+                >
+              </h5>
+              <div class="progress-bx style-1">
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-secondary progress-bar-striped progress-bar-animated"
+                    role="progressbar"
+                    aria-valuenow="{{camp.progress}}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="width:{{camp.progress}}%"
+                  ></div>
+                </div>
+                <ul class="progress-tag" style="display: static">
+                  <li class="raised"></li>
+                  <li class="goal">
+                    <i class="las la-coins"></i>
+                    <span>Total Raised $ {{camp.current_amount}}</span><br />
+                    <i class="las la-coins"></i>
+                    <span>Total amount $ {{camp.goal_amount}}</span><br />
+                    <i class="lar la-calendar"></i>
+                    <span>Expiry-Date: {{camp.end_date}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="author-wrappper">
+                <div class="author-media">
+                  <img
+                    src="{% static 'akcel/images/avatar/avatar1.jpg' %}"
+                    alt=""
+                  />
+                </div>
+                <div class="author-content">
+                  <div class="author-head">
+                    <h6 class="author-name">
+                      {{camp.created_by.first_name}}
+                      {{camp.created_by.last_name}}
+                    </h6>
+                  </div>
+                  <ul class="author-meta">
+                    <li class="campaign">
+                      {{camp.created_by.campaigns.count}}
+                    </li>
+                    <li class="location">{{camp.address}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'akcel/images/pattern/shape1.png' %}"
+    class="shape-1 move-1"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape2.png' %}"
+    class="shape-2 move-2"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape3.png' %}"
+    class="shape-3 move-1"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape5.png' %}"
+    class="shape-4 rotating"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape6.png' %}"
+    class="shape-5 rotating"
+    alt="shape"
+  />
+  <img
+    src="{% static 'akcel/images/pattern/shape6.png' %}"
+    class="shape-6 rotating"
+    alt="shape"
+  />
 </section>
 <!-- Online Courses End -->
 
-
-
 <!-- Counter -->
 <div class="counter-wrapper-1 content-inner-3">
-	<div class="container">
-		<div class="counter-inner bg-secondary">
-			<div class="row">
-				<div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.2s">
-					<div class="counter-style-1 text-center">
-						<span class="counter counter-num">23,577</span>
-						<p class="counter-text">Total Donor</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.4s">
-					<div class="counter-style-1 text-center">
-						<span class="counter counter-num">978</span>
-						<p class="counter-text">Donations</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.6s">
-					<div class="counter-style-1 text-center">
-						<span class="counter-num counter">762</span>
-						<p class="counter-text">Happy Clients</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.8s">
-					<div class="counter-style-1 text-center">
-						<span class="counter counter-num">852</span>
-						<p class="counter-text">Volunteer</p>
-					</div>
-				</div>
-			</div>
-			<img src="{% static 'akcel/images/counter/pattren1.png' %}" class="pattren1 move-2" alt="">
-			<img src="{% static 'akcel/images/counter/pattren2.png' %}" class="pattren2 move-2" alt="">
-			<img src="{% static 'akcel/images/counter/pattren3.png' %}" class="pattren3 move-2" alt="">
-			<img src="{% static 'akcel/images/counter/pattren4.png' %}" class="pattren4 move-2" alt="">
-			<img src="{% static 'akcel/images/counter/pattren5.png' %}" class="pattren5 move-2" alt="">
-			<img src="{% static 'akcel/images/counter/pattren6.png' %}" class="pattren6 move-2" alt="">
-		</div>
-	</div>
+  <div class="container">
+    <div class="counter-inner bg-secondary">
+      <div class="row">
+        <div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="counter-style-1 text-center">
+            <span class="counter counter-num">23,577</span>
+            <p class="counter-text">Total Donor</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="counter-style-1 text-center">
+            <span class="counter counter-num">978</span>
+            <p class="counter-text">Donations</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="counter-style-1 text-center">
+            <span class="counter-num counter">762</span>
+            <p class="counter-text">Happy Clients</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6 m-b30 wow fadeInUp" data-wow-delay="0.8s">
+          <div class="counter-style-1 text-center">
+            <span class="counter counter-num">852</span>
+            <p class="counter-text">Volunteer</p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="{% static 'akcel/images/counter/pattren1.png' %}"
+        class="pattren1 move-2"
+        alt=""
+      />
+      <img
+        src="{% static 'akcel/images/counter/pattren2.png' %}"
+        class="pattren2 move-2"
+        alt=""
+      />
+      <img
+        src="{% static 'akcel/images/counter/pattren3.png' %}"
+        class="pattren3 move-2"
+        alt=""
+      />
+      <img
+        src="{% static 'akcel/images/counter/pattren4.png' %}"
+        class="pattren4 move-2"
+        alt=""
+      />
+      <img
+        src="{% static 'akcel/images/counter/pattren5.png' %}"
+        class="pattren5 move-2"
+        alt=""
+      />
+      <img
+        src="{% static 'akcel/images/counter/pattren6.png' %}"
+        class="pattren6 move-2"
+        alt=""
+      />
+    </div>
+  </div>
 </div>
 <!-- Counter End -->
 
-
-
 <!-- Choose a donation amount -->
-<div class="modal fade modal-wrapper" id="modalDonate" tabindex="-1" role="dialog" aria-labelledby="modalDonate" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Choose a donation amount</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="flaticon-close"></i></button>
-			</div>
-			<div class="modal-body">
-				<form action="{% url 'akcel:index' %}">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="tag-donate style-1">
-								<div class="donate-categories">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-										<label class="form-check-label" for="flexRadioDefault1">
-											$500
-										</label>
-									</div>
-								</div>
-								<div class="donate-categories">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-										<label class="form-check-label" for="flexRadioDefault2">
-											$1000
-										</label>
-									</div>
-								</div>
-								<div class="donate-categories">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-										<label class="form-check-label" for="flexRadioDefault3">
-											$2000
-										</label>
-									</div>
-								</div>
-								<div class="donate-categories">
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-										<label class="form-check-label" for="flexRadioDefault4">
-											$5000
-										</label>
-									</div>
-								</div>
-								<p>Most Donors donate approx <span>$1000</span> to this Fundraiser</p>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Other Amount</label>
-								<div class="input-group">
-									<input type="number" class="form-control"  placeholder="Other Amount">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Name</label>
-								<div class="input-group">
-									<input name="dzName" required="" type="text" class="form-control" placeholder="Jakob Bothman">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Email address</label>
-								<div class="input-group">
-									<input name="dzEmail" required type="text" class="form-control" placeholder="info@mail.com">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Phone Number</label>
-								<div class="input-group">
-									<input type="number" class="form-control" placeholder="Phone Number">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Address</label>
-								<div class="input-group">
-									<input required type="text" class="form-control" placeholder="Address">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="form-label">Pancard</label>
-								<div class="input-group">
-									<input type="number" class="form-control" placeholder="Pancard">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group mb-0 text-center">
-								<button name="submit" type="submit" value="Submit" class="btn btn-primary btn-block">Proceed To Pay</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div
+  class="modal fade modal-wrapper"
+  id="modalDonate"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalDonate"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Choose a donation amount</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <i class="flaticon-close"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'akcel:index' %}">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="tag-donate style-1">
+                <div class="donate-categories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      $500
+                    </label>
+                  </div>
+                </div>
+                <div class="donate-categories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault2"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      $1000
+                    </label>
+                  </div>
+                </div>
+                <div class="donate-categories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault3"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      $2000
+                    </label>
+                  </div>
+                </div>
+                <div class="donate-categories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault4"
+                      checked
+                    />
+                    <label class="form-check-label" for="flexRadioDefault4">
+                      $5000
+                    </label>
+                  </div>
+                </div>
+                <p>
+                  Most Donors donate approx <span>$1000</span> to this
+                  Fundraiser
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Other Amount</label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Other Amount"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <div class="input-group">
+                  <input
+                    name="dzName"
+                    required=""
+                    type="text"
+                    class="form-control"
+                    placeholder="Jakob Bothman"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Email address</label>
+                <div class="input-group">
+                  <input
+                    name="dzEmail"
+                    required
+                    type="text"
+                    class="form-control"
+                    placeholder="info@mail.com"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone Number"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Address</label>
+                <div class="input-group">
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    placeholder="Address"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="form-label">Pancard</label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Pancard"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group mb-0 text-center">
+                <button
+                  name="submit"
+                  type="submit"
+                  value="Submit"
+                  class="btn btn-primary btn-block"
+                >
+                  Proceed To Pay
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

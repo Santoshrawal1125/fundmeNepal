@@ -6,7 +6,6 @@ from datetime import timedelta
 from django.utils import timezone
 
 
-
 class Category(models.Model):
     """Model representing a campaign category (e.g., Health, Education)."""
     name = models.CharField(max_length=100, unique=True)
@@ -30,8 +29,8 @@ class Campaign(models.Model):
     end_date = models.DateTimeField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
     slug = models.SlugField(unique=True, blank=True, null=True)
-    days_left = models.IntegerField(blank=True,null=True)
-    progress = models.DecimalField(blank=True,null=True,max_digits=10,decimal_places=2)
+    days_left = models.IntegerField(blank=True, null=True)
+    progress = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2)
 
     # Extra fields for fundraiser details
     address = models.CharField(max_length=255, null=True, blank=True)
@@ -50,7 +49,7 @@ class Campaign(models.Model):
             self.days_left = (self.end_date - today).days
         else:
             self.days_left = 3
-        self.progress = (Decimal(self.current_amount)/Decimal(self.goal_amount))*100
+        self.progress = (Decimal(self.current_amount) / Decimal(self.goal_amount)) * 100
         super(Campaign, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -62,13 +61,13 @@ class Donation(models.Model):
     campaign = models.ForeignKey(Campaign, on_delete=models.CASCADE, related_name='donations')
     donor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='donations')
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    transaction_id = models.CharField(max_length=255, null=False, default='temporary_value')  # Add default value    donated_at = models.DateTimeField(auto_now_add=True)
+    transaction_id = models.CharField(max_length=255, null=False,
+                                      default='temporary_value')  # Add default value    donated_at = models.DateTimeField(auto_now_add=True)
     message = models.TextField(blank=True, null=True)  # Allow longer messages
 
     def __str__(self):
         donor_name = self.donor.username if self.donor else "Anonymous"
         return f"{donor_name} donated Rs. {self.amount} to {self.campaign.title}"
-
 
 
 class Comment(models.Model):

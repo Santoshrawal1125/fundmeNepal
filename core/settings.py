@@ -146,7 +146,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
 if DEBUG:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 else:
@@ -160,5 +159,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-KHALTI_API_KEY = "6ca1fcea7b114061ad7b4990593402f3"
+KHALTI_API_KEY = "c3600c21727f4cb0b0911b186c218086"
 KHALTI_VERIFY_URL = "https://dev.khalti.com/api/v2/payment/verify/"

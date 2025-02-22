@@ -46,8 +46,10 @@ urlpatterns = [
     path('', include('akcel.urls', namespace='akcel')),
     path('account/', include('useraccount.urls', namespace='account')),
     path('api/user/', include('useraccount.api_urls')),
+    path('api/', include('akcel.api_urls')),  # Replace 'your_app_name' with your actual app name
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('dashboard/', include('dashboard.urls')),
     path('khalti/', include('khalti.urls')),
+
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
