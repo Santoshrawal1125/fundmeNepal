@@ -6,7 +6,7 @@ from django.views import View
 from akcel.models import Campaign, Category  # Import Campaign and Category models
 from django.views import generic
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 
@@ -20,7 +20,11 @@ class AdminFundraiserDetailView(View):
 
 
 
+def admin_required(user):
+    return user.is_staff
 
+@login_required
+@user_passes_test(admin_required)
 def index(request):
     return render(request, 'dashboard/base_index/index.html')
 

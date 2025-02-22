@@ -21,6 +21,7 @@ from rest_framework import permissions
 from django.conf.urls.static import static
 from drf_yasg import openapi
 from django.conf import settings
+from django.conf.urls import handler404
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -35,6 +36,10 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
+
+
+# Override the default 404 handler
+handler404 = 'akcel.views.custom_404'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

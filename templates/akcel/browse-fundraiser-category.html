@@ -15,9 +15,9 @@
 							<h4 class="title">Search</h4>
 						</div>
 						<div class="search-bx">
-							<form role="search" method="post">
+							<form role="search" method="GET">
 								<div class="input-group">
-									<input name="text" class="form-control" placeholder="Search Here..." type="text">
+									<input name="query" class="form-control" placeholder="Search Here..." type="text">
 									<span class="input-group-btn">
 										<button type="submit" class="btn btn-primary sharp radius-no"><i class="la la-search scale3"></i></button>
 									</span>
@@ -108,8 +108,8 @@
 											</ul>
 										</div>
 										<ul class="author-meta">
-											<li class="campaign">12 Campaign</li>
-											<li class="location">New York, London</li>
+											<li class="campaign">{{camp.created_by.campaigns.count}}</li>
+										<li class="location">{{camp.address}}</li>
 										</ul>
 									</div>
 								</div>
