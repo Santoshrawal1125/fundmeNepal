@@ -21791,7 +21791,7 @@ ul a.rsswidget {
   .dz-media img,
   .dz-post-media img {
     width: 100%;
-    height: auto; }
+    height: 250px!important; }
 
 .dz-box-bg {
   overflow: hidden;

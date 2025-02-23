@@ -33,10 +33,7 @@
           >
             <h4 class="mb-0 font-size-18">Campaign List</h4>
             <div class="page-title-right">
-              <a href="s" class="btn btn-primary waves-effect waves-light">
-                <i class="bx bx-plus font-size-16 align-middle me-2"></i>Add
-                Rental Property
-              </a>
+              
             </div>
           </div>
         </div>
@@ -111,7 +108,16 @@
                           white-space: nowrap;
                         "
                       >
-                        Price
+                        Goal Amount
+                      </th>
+                      <th
+                        style="
+                          text-align: center;
+                          background-color: #ced4da;
+                          white-space: nowrap;
+                        "
+                      >
+                        Current Amount
                       </th>
                       <th
                         style="
@@ -138,7 +144,16 @@
                           white-space: nowrap;
                         "
                       >
-                        More images
+                        More Images
+                      </th>
+                      <th
+                        style="
+                          text-align: center;
+                          background-color: #ced4da;
+                          white-space: nowrap;
+                        "
+                      >
+                        Status
                       </th>
                       <th
                         style="
@@ -157,6 +172,7 @@
                       <td>{{forloop.counter}}</td>
                       <td style="text-align: center">{{item.category}}</td>
                       <td style="text-align: center">{{item.title}}</td>
+                      <td style="text-align: center">{{item.goal_amount}}</td>
                       <td style="text-align: center">{{item.current_amount}}</td>
                       
 
@@ -200,10 +216,18 @@
                         />
                         {% endif %}
                       </td>
+                      <td style="text-align: center">
+                        {%if item.is_active%}
+                          Verified
+                        {%else%}
+                          Unverified
+                        {%endif%}
+                      </td>
+
  
                       <td style="text-align: center">
                         <a
-                          href="/dashboard/rent/create_or_edit/{{item.slug}}"
+                          href="/dashboard/campaign/create_or_edit/{{item.slug}}"
                           class="font-18 text-info"
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
