@@ -44,20 +44,19 @@
 					<p>{{campaign.description}}</p>
 					
 					<ul class="fundraiser-bottom">
-						<li><a href="javascript:void(0);" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalDonate"><i class="flaticon-like me-2"></i> Donate Now </a></li>
 						<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" target="_blank" class="btn facebook btn-primary btn-sm"><i class="fa-brands fa-facebook-square me-2"></i> Spread The World</a></li>
 						<li><a href="https://wa.me/?text={{ campaign.get_absolute_url|urlencode }}" target="_blank" class="btn whatsapp btn-primary btn-sm"><i class="fa-brands fa-whatsapp me-2"></i>Share</a></li>
 					</ul>
 				</div>
 				
-				<!-- Widget Refer -->
-				<div class="widget style-1 widget_refer">
-					<div class="widget-title">
-						<h4 class="title">Refer a Friend</h4>
-					</div>	
-					<p>In need of funds for medical treatment or know someone who might be? Share the details and Akcel will get in touch with.</p>
-					<a href="javascript:void(0);" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#modalRefer">Refer Now</a>
-				</div>
+<!--				&lt;!&ndash; Widget Refer &ndash;&gt;-->
+<!--				<div class="widget style-1 widget_refer">-->
+<!--					<div class="widget-title">-->
+<!--						<h4 class="title">Refer a Friend</h4>-->
+<!--					</div>	-->
+<!--					<p>In need of funds for medical treatment or know someone who might be? Share the details and Akcel will get in touch with.</p>-->
+<!--					<a href="javascript:void(0);" class="btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#modalRefer">Refer Now</a>-->
+<!--				</div>-->
 				
 				<!-- Comment List -->
 
@@ -102,7 +101,7 @@
 							</div> 
 						</div>
 						<ul class="detail">
-							<li class="d-flex"><h5>2422</h5><span class="ms-2">supporters</span></li>
+							<li class="d-flex"><h5>{{ campaign.donations.count }}</h5><span class="ms-2">Donors</span></li>
 							<li class="d-flex"><h5>{{campaign.days_left}}</h5><span class="ms-2">days left</span></li>
 						</ul>
 					</div>
@@ -183,50 +182,32 @@
 						</div>
 					</div>
 					 -->
-					<!-- Top Donors -->
-					<div class="widget style-1 widget_avatar">
-						<div class="widget-title">
-							<h5 class="title">Top Donors</h5>
-						</div>
-						<div class="avatar-wrapper">
-							<div class="avatar-item">
-								<div class="avatar-media"> 
-									<img src="{% static 'akcel/images/avatar/avatar5.jpg' %}" alt="">
-								</div>
-								<div class="avatar-info">
-									<h6 class="title"><a href="javascript:void(0);">Jake Johnson</a></h6>
-									<span class="donors-item">$ 1,812</span>
-								</div>
-							</div>
-							<div class="avatar-item">
-								<div class="avatar-media"> 
-									<img src="{% static 'akcel/images/avatar/avatar4.jpg' %}" alt="">
-								</div>
-								<div class="avatar-info">
-									<h6 class="title"><a href="javascript:void(0);">Celesto Anderson</a></h6>
-									<span class="donors-item">$ 1,564</span>
-								</div>
-							</div>
-							<div class="avatar-item">
-								<div class="avatar-media"> 
-									<img src="{% static 'akcel/images/avatar/avatar3.jpg' %}" alt="">
-								</div>
-								<div class="avatar-info">
-									<h6 class="title"><a href="javascript:void(0);">John Doe</a></h6>
-									<span class="donors-item">$ 1,225</span>
-								</div>
-							</div>
-							<div class="avatar-item">
-								<div class="avatar-media"> 
-									<img src="{% static 'akcel/images/avatar/avatar2.jpg' %}" alt="">
-								</div>
-								<div class="avatar-info">
-									<h6 class="title"><a href="javascript:void(0);">Jake Johnson</a></h6>
-									<span class="donors-item">$ 9,00</span>
-								</div>
-							</div>
-						</div>
-					</div>
+				<!-- Top Donors -->
+				<!-- Top Donors -->
+<div class="widget style-1 widget_avatar">
+    <div class="widget-title">
+        <h5 class="title">Top Donors</h5>
+    </div>
+    <div class="avatar-wrapper">
+        {% for donor in top_donors %}
+        <div class="avatar-item">
+            <div class="avatar-info" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h6 class="title" style="margin: 0; flex-grow: 1; text-transform: capitalize;">
+                    <a href="javascript:void(0);">{{ donor.donor__first_name }} {{ donor.donor__last_name }}</a>
+                </h6>
+                <span class="donors-item" style="font-weight: bold; margin-left: 50px;">
+                    Rs. {{ donor.total_donated }}
+                </span>
+            </div>
+        </div>
+        {% empty %}
+        <p>No donations yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
 				</aside>
 			</div>
 		</div>

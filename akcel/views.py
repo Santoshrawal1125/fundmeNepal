@@ -8,6 +8,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from decimal import Decimal
+from django.db.models import Sum
 
 
 class IndexView(View):
@@ -164,8 +165,17 @@ class FundraiserDetailView(View):
         # Fetch the campaign using the slug
         campaign = Campaign.objects.get(slug=slug)
 
-        # Render the template and pass the campaign to the context
-        return render(request, 'akcel/fundraiser-detail.html', {'campaign': campaign})
+        # Get the top donors (you can modify this query to match your needs)
+        top_donors = Donation.objects.filter(campaign=campaign) \
+                                     .values('donor__first_name', 'donor__last_name') \
+                                     .annotate(total_donated=Sum('amount')) \
+                                     .order_by('-total_donated')[:4]
+
+        # Render the template and pass the campaign and top donors to the context
+        return render(request, 'akcel/fundraiser-detail.html', {
+            'campaign': campaign,
+            'top_donors': top_donors
+        })
 
 
 class ProjectView(View):
