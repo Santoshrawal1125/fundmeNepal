@@ -58,12 +58,9 @@
             <div class="navbar-brand-box" >
 
                 <a href="{% url 'dashboard:index' %}" class="logo logo-light">
-                    <span class="logo-lg" >
-                        <img src="{{company_detail.logo.url}}" class="img-fluid" style="height: 40px; width: 80px;" alt="" >
-                    </span>
-                    <span class="logo-sm">
-                        <img src="{{company_detail.logo.url}}" class="img-fluid"  style="height: 20px; width: 40px;"  alt="" height="19">
-                    </span>
+                    
+                        <img src="{%static 'dashboard\build\images\profile-img.png'%}" class="img-fluid" style="height: 40px; width: 80px;" >
+                    
                 </a>
             </div>
             <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
@@ -100,24 +97,10 @@
                 </button>
             </div>
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                    id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="bx bx-bell bx-tada"></i>
-                    <span class="badge bg-danger rounded-pill">10</span>
-                </button>
+                
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                     aria-labelledby="page-header-notifications-dropdown">
-                    <div class="p-3">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="m-0"> Notifications</h6>
-                            </div>
-                            <div class="col-auto">
-                                <a href="" class="small"> View All</a>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div data-simplebar class="notification-list-scroll overflow-auto" style="max-height: 230px;">
 
                                             </div>
@@ -133,12 +116,12 @@
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                        src="{% if request.user.avatar %}{{ request.user.avatar.url }}{% else %}/path/to/default/avatar.png{% endif %}"
+                        src="{%static 'dashboard\build\download.jpg'%}"
                         alt="">
-                    {% if request.user.name is None %}
+                    {% if request.user.username is None %}
                         <span class="d-none d-xl-inline-block ms-1" style="text-transform: uppercase;">Welcome </span>
                     {%else%}
-                        <span class="d-none d-xl-inline-block ms-1" style="text-transform: uppercase;">Welcome {{request.user.name}}</span>
+                        <span class="d-none d-xl-inline-block ms-1" style="text-transform: uppercase;">Welcome {{request.user.username}}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     {% endif %}
                 </button>
@@ -216,7 +199,7 @@
             </li>
 
             <li>
-                <a href="{% url 'dashboard:Rent' %}" class="">
+                <a href="{% url 'dashboard:Campaign' %}" class="">
                     <i class="bx bx-home"></i>
                     <span>Campaign</span>
                 </a>

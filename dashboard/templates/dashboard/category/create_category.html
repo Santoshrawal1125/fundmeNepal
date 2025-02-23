@@ -28,7 +28,7 @@ Add category
                     <div class="card">
                         <div class="card-body">
                             <blockquote>{% if form.instance.pk %} Update {% else %}Add New {% endif %} category</blockquote>
-                            <form method="post" enctype="multipart/form-data">
+                            <form method="POST" >
                                 {% csrf_token %}
                                 {{ form.media }}
                                 {{form.errors}}
@@ -45,38 +45,17 @@ Add category
                                     <div class="col-xl-6">
                                         <div class="mb-3">
                                             <label class="form-label">category Name</label>
-                                            <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control" value="{{ form.name.value|default_if_none:'' }}" placeholder="Enter category name" required>
+                                            <input type="text" name="name" class="form-control"  placeholder="Enter category name" required>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="{{ form.image.id_for_label }}" class="form-label">category Image :</label>
-                                            <input type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" class="form-control" {% if not form.instance.pk %}required{% endif %} onchange="showPreview(this, 'imagePreview');">
-                                            <div id="imageContainer" style="width:auto; height:auto;">
-                                                {% if form.instance.image %}
-                                                    <img class="img-fluid" id="imagePreview" src="{{ form.instance.image.url }}" alt="">
-                                                {% else %}
-                                                    <img class="img-fluid" id="imagePreview" src="" alt="">
-                                                {% endif %}
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="{{ form.icon.id_for_label }}" class="form-label">category icon :</label>
-                                            <input type="file" name="{{ form.icon.name }}" id="{{ form.icon.id_for_label }}" class="form-control" {% if not form.instance.pk %}required{% endif %} onchange="showPreview(this, 'iconPreview');">
-                                            <div id="iconContainer" style="width:auto; height:auto;">
-                                                {% if form.instance.icon %}
-                                                    <img class="img-fluid" id="iconPreview" src="{{ form.instance.icon.url }}" alt="">
-                                                {% else %}
-                                                    <img class="img-fluid" id="iconPreview" src="" alt="">
-                                                {% endif %}
-                                            </div>
-                                        </div>
+                                       
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Description</label>
-                                            {{ form.description }}
+                                            <br>
+                                            <textarea name="description"  class="form-control" cols="30" rows="10" required></textarea>
                                         </div>
                                     </div>
                                 </div>

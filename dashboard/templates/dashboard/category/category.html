@@ -33,7 +33,8 @@
           >
             <h4 class="mb-0 font-size-18">category List</h4>
             <div class="page-title-right">
-              <a href="s" class="btn btn-primary waves-effect waves-light">
+              
+              <a href="create/" class="btn btn-primary waves-effect waves-light">
                 <i class="bx bx-plus font-size-16 align-middle me-2"></i>Add
                 category
               </a>
@@ -158,7 +159,7 @@
 
                       <td style="text-align: center">
                         <a
-                          href="{% url 'dashboard:product_category_update' item.id %}"
+                          href="category/update/{{item.title}}"
                           class="font-18 text-info"
                           data-bs-toggle="tooltip"
                           data-bs-placement="top"
