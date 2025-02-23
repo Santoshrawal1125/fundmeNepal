@@ -83,7 +83,7 @@ Add Rent
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <a href="{% url  'dashboard:Rent' %}" class="btn btn-primary">Back to Campaign list </a>
+                        <a href="{% url  'dashboard:Campaign' %}" class="btn btn-primary">Back to Campaign list </a>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@ Add Rent
                         <div class="card-body">
                             <blockquote> Update the Campaing
                             </blockquote>
-                            <form method="POST" action="/dashboard/rent/create_or_edit/{{rent_form.slug}}">
+                            <form method="POST" action="/dashboard/campaign/create_or_edit/{{rent_form.slug}}">
                                 {% csrf_token %}
                                 
                                 <div class="row">

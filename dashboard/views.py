@@ -85,6 +85,14 @@ class CategoryListView(generic.ListView):
 
 
 def category_create(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        Category.objects.create(
+            name = name,
+            description = description,
+        )
+        return redirect("/dashboard/category")
     return render(request, 'dashboard/category/create_category.html')
 
 
@@ -124,7 +132,7 @@ def create_or_edit_rent(request,slug):
         campaign.description = description
         campaign.is_active = is_active
         campaign.save()
-        return redirect("/dashboard/rent/")
+        return redirect("/dashboard/campaign/")
 
     return render(request, 'dashboard/rent/create_rent.html',{"rent_form":campaign})
 

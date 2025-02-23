@@ -72,7 +72,7 @@
 					<div class="col-xl-6 m-b30">
 						<div class="dz-card style-2 overlay-skew">
 							<div class="dz-media">
-								<a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"><img src="{{camp.image.url}}" alt=""></a>
+								<a href="{% url 'akcel:fundraiser-detail' slug=camp.slug %}"><img src="{{camp.image.url}}" alt="" style="height: 250px;"></a>
 							</div>
 							<div class="dz-info">
 								<ul class="dz-category">
@@ -87,16 +87,23 @@
 									
 									<ul class="progress-tag">
 										<li class="raised">
-											<i class="las la-coins"></i> <span>Total Raised ${{camp.current_amount}}</span>
+											
 										</li>
 										<li class="goal">
-											<i class="lar la-calendar"></i> <span>Expiry-Date: {{camp.end_date}}</span>
+											<li class="goal">
+												<i class="las la-coins"></i>
+												<span>Total Raised $ {{camp.current_amount}}</span><br />
+												<i class="las la-coins"></i>
+												<span>Total amount $ {{camp.goal_amount}}</span><br />
+												<i class="lar la-calendar"></i>
+												<span>Expiry-Date: {{camp.end_date}}</span>
+											  </li>
 										</li>
 									</ul> 
 								</div>
 								<div class="author-wrappper">
 									<div class="author-media">
-										<img src="{% static 'akcel/images/avatar/avatar1.jpg' %}" alt=""> 
+										<img src="{% static 'akcel/images/avatar/avatar1.jpg' %}" alt="" > 
 									</div>
 									<div class="author-content">
 										<div class="author-head">
